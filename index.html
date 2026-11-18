@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HARVTECH PRIVATE LIMITED | Empowering Farmers. Engineering the Future of Agriculture.</title>
+  
+  <!-- Primary Meta Tags -->
+  <meta name="description" content="Harvtech Private Limited designs and manufactures next-generation electric tractors, tillers, and power weeders for sustainable, zero-emission farming in India.">
+  <meta name="keywords" content="Harvtech Private Limited, HARVTECH, Power Weeder, Electric Weeder, Tiller, Mini Tractor, Smart Farming, Tamil Nadu, AgriTech India">
+  <meta name="author" content="Harvtech Private Limited">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/images/harvtech-logo.jpg">
+  
+  <!-- Google Fonts: Space/Industrial Futurist Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Orbitron:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Ambient Grid Overlay -->
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       TOP HEADER & NAVIGATION BAR
+       - Left side: HARVTECH company logo (exact spelling: H A R V T E C H)
+       - Subline: "Private Limited" (words "agri machinery" removed)
+       - Right side: Home, Products, Gallery, Contact Us
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      
+      <!-- Company Logo & Name on Left Side Corner -->
+      <a href="#home" class="brand-link spa-trigger" data-page="home" title="Harvtech Private Limited">
+        <div class="logo-frame">
+          <img src="assets/images/harvtech-logo.jpg" alt="HARVTECH Logo" class="brand-logo-img">
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-name">H A R V<span>T E C H</span></span>
+          <span class="brand-subline">Private Limited</span>
+        </div>
+      </a>
+
+      <!-- Right Side Navigation: Home, Products, Gallery, Contact Us -->
+      <nav aria-label="Main Navigation">
+        <ul class="nav-menu" id="navMenu">
+          <li>
+            <a href="#home" class="nav-link active" data-page="home">
+              <i class="fa-solid fa-house"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#products" class="nav-link" data-page="products">
+              <i class="fa-solid fa-cubes-stacked"></i>
+              <span>Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gallery" class="nav-link" data-page="gallery">
+              <i class="fa-solid fa-images"></i>
+              <span>Gallery</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contact-us" class="nav-link" data-page="contact-us">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Contact Us</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Drawer Toggle -->
+      <div class="nav-actions">
+        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
+          <i class="fa-solid fa-bars fa-lg"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN VIEWPORT CONTAINER
+       ======================================================================== -->
+  <main class="main-viewport">
+
+    <!-- ======================================================================
+         PAGE 1: HOMEPAGE
+         - Single-screen AI-generated video that moves on mouse scroll
+         - Followed directly by the Application of Harvtech
+         ====================================================================== -->
+    <section id="home" class="page-view active-page">
+      
+      <!-- Single-Screen Scroll-Controlled Video Animation -->
+      <div class="home-video-screen" id="homeVideoScreen">
+        <video 
+          id="homeScrollVideo" 
+          class="home-scroll-video" 
+          playsinline 
+          webkit-playsinline 
+          muted 
+          preload="auto"
+        >
+          <source src="assets/videos/homepage-story.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+
+      <!-- Application of Harvtech Section -->
+      <div class="about-company-section" id="applicationSection">
+        <div class="container">
+          
+          <div class="story-card-large">
+            <div class="story-grid-two">
+              <div>
+                <span class="section-tag">
+                  <i class="fa-solid fa-microchip"></i>
+                  The Harvtech Mission
+                </span>
+                <h2 style="font-size: 2.3rem; margin-bottom: 1.2rem;">Modernising Agriculture Through Clean Mechanisation</h2>
+                <p style="color: #cbd5e1; font-size: 1.08rem; line-height: 1.8; margin-bottom: 1.2rem;">
+                  At <strong>Harvtech Private Limited</strong>, we engineer electric farm machinery that addresses the twin crises facing modern agriculture: acute rural labor shortages and escalating diesel operating costs.
+                </p>
+                <p style="color: var(--text-muted); font-size: 0.98rem; line-height: 1.7;">
+                  By combining high-density lithium energy storage, smart motor controllers, and rugged chassis geometry, our machines deliver continuous high torque for inter-row weeding, soil pulverization, and bed preparation—producing <strong>zero emissions</strong>, whisper-quiet operation, and unprecedented cost savings.
+                </p>
+
+                <ul class="story-highlight-list">
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span><strong>65% Cost Reduction:</strong> Drastically slashes per-acre weeding and tilling expense compared to diesel engines.</span>
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span><strong>Soil Health Preservation:</strong> Eliminates toxic diesel fumes and reduces machine vibration, protecting delicate crop roots.</span>
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span><strong>Single-Operator Handling:</strong> Perfectly balanced center of gravity allows effortless operation by a single farmer.</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="story-media-box">
+                <img src="assets/images/gallery-field-test.jpg" alt="Harvtech Field Operation in Tamil Nadu">
+              </div>
+            </div>
+          </div>
+
+          <!-- Application Pillars Grid -->
+          <div class="section-header">
+            <span class="section-tag">
+              <i class="fa-solid fa-gears"></i>
+              Agricultural Solutions
+            </span>
+            <h2 class="section-title">HOW HARVTECH SUPPORTS FARMERS</h2>
+            <p class="section-desc">
+              From smallholder vegetable growers to commercial orchard cultivators, Harvtech machinery is engineered for maximum operational efficiency and long-term soil sustainability.
+            </p>
+          </div>
+
+          <div class="pillars-grid">
+            
+            <div class="pillar-box">
+              <div class="pillar-icon">
+                <i class="fa-solid fa-leaf"></i>
+              </div>
+              <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem;">Precision Inter-Row Weeding</h3>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65;">
+                Removes root systems of stubborn weeds in narrow vegetable, cotton, and turmeric ridges without chemical herbicides, improving topsoil aeration and root respiration.
+              </p>
+            </div>
+
+            <div class="pillar-box">
+              <div class="pillar-icon">
+                <i class="fa-solid fa-battery-bolt"></i>
+              </div>
+              <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem;">Clean Electric Powertrains</h3>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65;">
+                Instant torque from brushless DC motors eliminates gear slippage in heavy clay and wet soils. Swappable battery packs ensure uninterrupted whole-day field operations.
+              </p>
+            </div>
+
+            <div class="pillar-box">
+              <div class="pillar-icon">
+                <i class="fa-solid fa-robot"></i>
+              </div>
+              <h3 style="font-size: 1.3rem; margin-bottom: 0.8rem;">Future Autonomous Guidance</h3>
+              <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65;">
+                Built-in drive-by-wire capability allows seamless expansion into sensor-guided autonomous row-following, reducing farmer fatigue and delivering uniform cultivation.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================================
+         PAGE 2: PRODUCTS SECTION
+         Order:
+           1. Power Weeder (Hero, Currently Available, Multi-Angle 360 viewer, Book Demo)
+           2. Tiller (Coming Soon)
+           3. Mini Tractor (Coming Soon)
+         ====================================================================== -->
+    <section id="products" class="page-view">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">
+            <i class="fa-solid fa-layer-group"></i>
+            Machinery Fleet
+          </span>
+          <h2 class="section-title">THE HARVTECH MACHINERY PORTFOLIO</h2>
+          <p class="section-desc">
+            Explore our breakthrough lineup of electric agricultural machinery. Product 1 is open for commercial orders and on-farm demonstrations.
+          </p>
+        </div>
+
+        <!-- PRODUCT 1: POWER WEEDER (HERO PRODUCT - AVAILABLE NOW) -->
+        <div class="hero-product-showcase">
+          <div class="hero-product-grid">
+            
+            <!-- Multi-Angle 360 Turntable Viewport (Yellow & Black) -->
+            <div>
+              <div class="product-360-turntable" id="weeder360Turntable" title="Drag with mouse or swipe with finger to inspect 360° views">
+                
+                <div class="pedestal-ring"></div>
+                <div class="pedestal-ring-inner"></div>
+
+                <!-- Machine Stage with 360 Video of Harvtech Power Weeder -->
+                <div class="machine-stage" id="weederMachineStage">
+                  <video 
+                    id="weeder360Video" 
+                    class="weeder-360-video" 
+                    src="assets/videos/weeder-360.mp4" 
+                    autoplay 
+                    loop 
+                    muted 
+                    playsinline 
+                    preload="auto"
+                  ></video>
+                </div>
+
+                <!-- Turntable HUD Controls -->
+                <div class="turntable-hud">
+                  <div class="hud-badge-360">
+                    <i class="fa-solid fa-arrows-rotate fa-spin"></i>
+                    <span>360° MACHINE ROTATION</span>
+                    <span id="weederAngleDeg">0°</span>
+                  </div>
+
+                  <div style="display: flex; gap: 0.45rem;">
+                    <button type="button" class="angle-btn active" id="btnToggleTurntable" title="Toggle Auto 360° Spin">
+                      <i class="fa-solid fa-pause"></i>
+                    </button>
+                    <button type="button" class="angle-btn" id="btnResetTurntable" title="Reset View">
+                      <i class="fa-solid fa-rotate-left"></i>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Quick Angle Selector (Front, Side, Rear, Perspective in Yellow & Black) -->
+              <div class="angle-selector-bar">
+                <button type="button" class="angle-btn active" data-angle="front">Front View</button>
+                <button type="button" class="angle-btn" data-angle="side">Side Profile</button>
+                <button type="button" class="angle-btn" data-angle="rear">Rear / Motor</button>
+                <button type="button" class="angle-btn" data-angle="perspective">Full 360° Spin</button>
+              </div>
+            </div>
+
+            <!-- Product 1 Details & Book Demonstration CTA -->
+            <div>
+              
+              <div class="status-pill-open">
+                <span class="status-dot-pulse"></span>
+                <span>Product 1: Currently Available to Order</span>
+              </div>
+
+              <h2 style="font-size: clamp(2.2rem, 3.5vw, 3rem); line-height: 1.15; margin-bottom: 1rem;">
+                HARVTECH ELECTRIC POWER WEEDER
+              </h2>
+
+              <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem;">
+                Our premier electric power weeder engineered specifically for ridge crops, vegetable cultivation, cotton, and orchards. Powered by a heavy-duty brushless high-torque motor with swappable batteries, delivering instant power with zero fuel costs, zero engine vibrations, and effortless handling.
+              </p>
+
+              <!-- Technical Specifications Grid -->
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2.2rem;">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem;">
+                  <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Drive System</div>
+                  <div style="font-size: 1rem; font-weight: 700; color: #fff;">High-Torque <span class="text-mustard">BLDC Motor</span></div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem;">
+                  <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Battery Pack</div>
+                  <div style="font-size: 1rem; font-weight: 700; color: #fff;">Swappable <span class="text-mustard">Lithium-Ion</span></div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem;">
+                  <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Weeding Width</div>
+                  <div style="font-size: 1rem; font-weight: 700; color: #fff;">1.5 ft to 3.0 ft <span class="text-mustard">Adjustable</span></div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem 1rem;">
+                  <div style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase;">Runtime</div>
+                  <div style="font-size: 1rem; font-weight: 700; color: #fff;">4 - 6 Hours <span class="text-mustard">Per Charge</span></div>
+                </div>
+              </div>
+
+              <!-- Book Demonstration Action -->
+              <div style="display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;">
+                <a href="#contact-us" class="btn btn-mustard trigger-book-demo" data-product="Power Weeder" style="font-size: 1.1rem; padding: 1.1rem 2.4rem;">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Book Demonstration</span>
+                  <i class="fa-solid fa-arrow-right" style="margin-left: 0.4rem;"></i>
+                </a>
+                <span class="text-muted" style="font-size: 0.88rem;">
+                  <i class="fa-solid fa-circle-check text-mustard"></i> Live field demo available across Tamil Nadu
+                </span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- COMING SOON SECONDARY PRODUCTS (Order: 2. Tiller, 3. Mini Tractor) -->
+        <h3 class="coming-soon-heading">
+          <i class="fa-solid fa-hourglass-half text-mustard"></i>
+          Upcoming Machinery Fleet
+        </h3>
+
+        <div class="secondary-products-grid">
+          
+          <!-- PRODUCT 2: TILLER (COMING SOON) -->
+          <div class="product-card">
+            <div class="product-card-thumb">
+              <img src="assets/images/electric-tiller.jpg" alt="Harvtech Electric Tiller">
+              <div class="badge-coming-soon">Coming Soon</div>
+            </div>
+            <div class="product-card-body">
+              <h4 class="product-card-title">Product 2: Harvtech Electric Tiller</h4>
+              <p class="product-card-desc">
+                Heavy-duty rotary tiller designed for deep soil pulverisation and nursery preparation. Powered by an IP67 sealed high-torque electric transaxle with vibration-dampened dual grips.
+              </p>
+              <ul class="product-card-specs">
+                <li><i class="fa-solid fa-check"></i> Hardened Boron Steel Helical Blades</li>
+                <li><i class="fa-solid fa-check"></i> Dual Swappable High-Current Battery Enclosure</li>
+                <li><i class="fa-solid fa-check"></i> Multi-Speed Forward and Reverse Drive Control</li>
+              </ul>
+              <div class="btn-disabled-notice">
+                <i class="fa-solid fa-lock" style="margin-right: 0.4rem;"></i> COMING SOON • R&D Final Validation
+              </div>
+            </div>
+          </div>
+
+          <!-- PRODUCT 3: MINI TRACTOR (COMING SOON) -->
+          <div class="product-card">
+            <div class="product-card-thumb">
+              <img src="assets/images/mini-tractor.jpg" alt="Harvtech Electric Mini Tractor">
+              <div class="badge-coming-soon">Coming Soon</div>
+            </div>
+            <div class="product-card-body">
+              <h4 class="product-card-title">Product 3: Harvtech Electric Mini Tractor</h4>
+              <p class="product-card-desc">
+                Compact, high-clearance electric tractor designed for orchard spray operations, bed shaping, and inter-cultivation. Dual independent electric motors with regenerative braking.
+              </p>
+              <ul class="product-card-specs">
+                <li><i class="fa-solid fa-check"></i> 15HP Equivalent Continuous Torque Output</li>
+                <li><i class="fa-solid fa-check"></i> Standard Cat-1 Three-Point Hitch & 540 RPM PTO</li>
+                <li><i class="fa-solid fa-check"></i> Autonomous Row Following Sensor Ready</li>
+              </ul>
+              <div class="btn-disabled-notice">
+                <i class="fa-solid fa-lock" style="margin-right: 0.4rem;"></i> COMING SOON • Prototyping Stage
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         PAGE 3: GALLERY SECTION
+         ====================================================================== -->
+    <!-- ======================================================================
+         PAGE 3: VISUAL GALLERY SECTION
+         Dribbble-Inspired Asymmetric Portfolio Layout (5 Unique Images)
+         ====================================================================== -->
+    <section id="gallery" class="page-view">
+      <div class="container gallery-container">
+        
+        <!-- Minimal Heading Section matching Reference -->
+        <div class="gallery-header-minimal">
+          <div class="gallery-header-left">
+            <span class="gallery-mini-label">EXPLORE OUR WORK</span>
+            <h2 class="gallery-main-title">Our Visual Gallery</h2>
+          </div>
+          <div class="gallery-header-right">
+            <p class="gallery-subtitle">A glimpse into our journey, innovations, people, and impact.</p>
+          </div>
+        </div>
+
+        <!-- Asymmetric Visual Grid: Top Row (2 Items: Large Landscape + Medium) & Bottom Row (3 Equal Items) -->
+        <div class="visual-gallery-grid" id="visualGalleryGrid">
+
+          <!-- TOP ROW: Large Landscape (62%) + Medium (38%) -->
+          <div class="gallery-row-top">
+            
+            <!-- ITEM 1: Large Landscape Image -->
+            <div class="gallery-card item-large-landscape" data-index="0" data-img="assets/images/gallery/startup-tn-tanseed-group.jpg" data-tag="StartupTN & TANSEED" data-title="StartupTN & TANSEED Awardees Cohort" data-desc="Our founders had the pleasure of meeting Mr. Singai G Ramachandran Sir, Chairman of StartupTN, and exchanging thoughts, insights, and experiences on strengthening Tamil Nadu's startup ecosystem. As proud TANSEED awardees, we sincerely appreciate the initiatives taken towards empowering early-stage startups through funding, mentorship, and ecosystem support. It was a wonderful opportunity to share our journey at HARVTECH, discuss our experiences, and understand the vision for creating more opportunities for emerging entrepreneurs across Tamil Nadu. We look forward to being part of this growing ecosystem and contributing towards building impactful innovations.">
+              <div class="gallery-card-media">
+                <img src="assets/images/gallery/startup-tn-tanseed-group.jpg" alt="StartupTN TANSEED Awardees Cohort" loading="lazy">
+                <div class="gallery-card-overlay">
+                  <div class="overlay-badge-row">
+                    <span class="overlay-badge"><i class="fa-solid fa-seedling"></i> StartupTN & TANSEED</span>
+                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
+                  </div>
+                  <div class="overlay-text-block">
+                    <h3 class="overlay-title">StartupTN & TANSEED Awardees Cohort</h3>
+                    <p class="overlay-snippet">Founders with Mr. Singai G Ramachandran Sir and fellow TANSEED innovators strengthening Tamil Nadu's ecosystem.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ITEM 2: Medium-Sized Image -->
+            <div class="gallery-card item-medium-featured" data-index="1" data-img="assets/images/gallery/electric-tractor-launch-minister-trb-rajaa.png" data-tag="Ministerial Milestone" data-title="Autonomous Electric Tractor Inauguration & Launch" data-desc="We are delighted to share that our autonomous electric tractor was inaugurated and launched by the Hon'ble Minister of Industries, Investments and Commerce Dr. TRB Rajaa. 🙏 It was an inspiring moment as the Minister appreciated our vision to transform agriculture through innovation, sustainability, and technology. His words of encouragement motivate us to continue building solutions that empower farmers and shape a smarter, cleaner future for Indian agriculture. 🌾 This milestone marks not just a product launch — but a step toward redefining how farming and technology coexist. A heartfelt thank you to everyone who believed in us and stood by our journey. The road ahead is electric! ⚡">
+              <div class="gallery-card-media">
+                <img src="assets/images/gallery/electric-tractor-launch-minister-trb-rajaa.png" alt="Inauguration and launch of Harvtech autonomous electric tractor by Hon'ble Minister Dr. TRB Rajaa" loading="lazy">
+                <div class="gallery-card-overlay">
+                  <div class="overlay-badge-row">
+                    <span class="overlay-badge"><i class="fa-solid fa-bolt"></i> Ministerial Launch</span>
+                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
+                  </div>
+                  <div class="overlay-text-block">
+                    <h3 class="overlay-title">Autonomous Electric Tractor Inauguration</h3>
+                    <p class="overlay-snippet">Inaugurated and launched by Hon'ble Minister of Industries, Investments & Commerce Dr. TRB Rajaa.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- BOTTOM ROW: 3 Smaller/Medium Images Arranged Neatly Below -->
+          <div class="gallery-row-bottom">
+
+            <!-- ITEM 3: Bottom Left Image -->
+            <div class="gallery-card item-bottom-tri" data-index="2" data-img="assets/images/gallery/startup-tn-founders.jpg" data-tag="Leadership & Vision" data-title="Founders with StartupTN Chairman" data-desc="Our founders with Mr. Singai G Ramachandran Sir, Chairman of StartupTN, discussing agritech innovation opportunities for emerging entrepreneurs across Tamil Nadu. Sharing our journey at HARVTECH and our vision for zero-emission smart farm machinery.">
+              <div class="gallery-card-media">
+                <img src="assets/images/gallery/startup-tn-founders.jpg" alt="Harvtech Founders with Mr. Singai G Ramachandran Sir, Chairman of StartupTN" loading="lazy">
+                <div class="gallery-card-overlay">
+                  <div class="overlay-badge-row">
+                    <span class="overlay-badge"><i class="fa-solid fa-handshake"></i> Leadership</span>
+                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
+                  </div>
+                  <div class="overlay-text-block">
+                    <h3 class="overlay-title">Founders with StartupTN Chairman</h3>
+                    <p class="overlay-snippet">Harvtech founders in discussion with Mr. Singai G Ramachandran Sir on rural mechanisation.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ITEM 4: Bottom Center Image -->
+            <div class="gallery-card item-bottom-tri" data-index="3" data-img="assets/images/gallery/sustainability-accelerator-cohort.png" data-tag="Climate Scale-up" data-title="Sustainability Accelerator Climate Cohort" data-desc="What a transformative experience it has been! A dynamic bootcamp filled with Founder Talks, Training & Brainstorming sessions, Innovation Workshops and Climate Pitch Day. Uniting pioneers in sustainable energy and clean technology across India.">
+              <div class="gallery-card-media">
+                <img src="assets/images/gallery/sustainability-accelerator-cohort.png" alt="Sustainability Accelerator full cohort photo" loading="lazy">
+                <div class="gallery-card-overlay">
+                  <div class="overlay-badge-row">
+                    <span class="overlay-badge"><i class="fa-solid fa-leaf"></i> Climate Cohort</span>
+                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
+                  </div>
+                  <div class="overlay-text-block">
+                    <h3 class="overlay-title">Sustainability Accelerator Cohort</h3>
+                    <p class="overlay-snippet">National Climate Solutions Scale-up Bootcamp with The Sustainability Mafia and FITT.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ITEM 5: Bottom Right Image -->
+            <div class="gallery-card item-bottom-tri" data-index="4" data-img="assets/images/gallery/sustainability-accelerator-team.png" data-tag="Pitch Day & Mentorship" data-title="Harvtech Team & Industry Mentors" data-desc="Here's to innovation, sustainability and game-changing ideas that will shape the future! A huge thank you to the mentors and organizers for their collaboration, insightful sessions, and guidance throughout the acceleration program.">
+              <div class="gallery-card-media">
+                <img src="assets/images/gallery/sustainability-accelerator-team.png" alt="Harvtech Team with organizers at the Sustainability Accelerator banner" loading="lazy">
+                <div class="gallery-card-overlay">
+                  <div class="overlay-badge-row">
+                    <span class="overlay-badge"><i class="fa-solid fa-award"></i> Mentorship</span>
+                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
+                  </div>
+                  <div class="overlay-text-block">
+                    <h3 class="overlay-title">Harvtech Team & Mentors</h3>
+                    <p class="overlay-snippet">Founders and team at the Climate Solutions Scale-up Showcase in front of the official banner.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         PAGE 4: CONTACT US SECTION
+         ====================================================================== -->
+    <section id="contact-us" class="page-view">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">
+            <i class="fa-solid fa-handshake"></i>
+            Direct Inquiry
+          </span>
+          <h2 class="section-title">CONNECT WITH HARVTECH</h2>
+          <p class="section-desc">
+            Book an on-farm demonstration or get in touch with our engineering and sales team in Tamil Nadu.
+          </p>
+        </div>
+
+        <div class="contact-split-grid">
+          
+          <!-- LEFT SIDE: Company Contact & Verified Social Media -->
+          <div class="contact-left-card">
+            
+            <div class="company-profile-box">
+              <h3 class="company-profile-title">HARVTECH PRIVATE LIMITED</h3>
+              <p class="company-profile-desc">
+                Dedicated to pioneering sustainable agricultural mechanization, electric powertrains, and cutting-edge farming robotics across India.
+              </p>
+
+              <div class="channels-list">
+                
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/search/results/all/?keywords=HARVTECH" target="_blank" rel="noopener noreferrer" class="channel-card">
+                  <div class="channel-main">
+                    <div class="channel-icon">
+                      <i class="fa-brands fa-linkedin-in"></i>
+                    </div>
+                    <div class="channel-info">
+                      <h4>LinkedIn</h4>
+                      <div class="channel-value">HARVTECH</div>
+                    </div>
+                  </div>
+                  <div class="channel-arrow">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </div>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/its_harvtech" target="_blank" rel="noopener noreferrer" class="channel-card">
+                  <div class="channel-main">
+                    <div class="channel-icon">
+                      <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <div class="channel-info">
+                      <h4>Instagram</h4>
+                      <div class="channel-value">its_harvtech</div>
+                    </div>
+                  </div>
+                  <div class="channel-arrow">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </div>
+                </a>
+
+                <!-- Email Contact -->
+                <a href="mailto:harvtechllp@gmail.com" class="channel-card" id="btnCopyCompanyEmail">
+                  <div class="channel-main">
+                    <div class="channel-icon">
+                      <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="channel-info">
+                      <h4>Official Email</h4>
+                      <div class="channel-value">harvtechllp@gmail.com</div>
+                    </div>
+                  </div>
+                  <div class="channel-arrow" title="Click to copy or email">
+                    <i class="fa-solid fa-copy"></i>
+                  </div>
+                </a>
+
+              </div>
+            </div>
+
+            <!-- Exact Company Registered Location -->
+            <div class="company-address-box">
+              <div class="address-header">
+                <i class="fa-solid fa-map-location-dot text-mustard fa-lg"></i>
+                <h4 class="address-title">Registered Office</h4>
+              </div>
+              <div class="address-content">
+                <strong>HARVTECH PRIVATE LIMITED</strong><br>
+                PLOT 78/79, FLAT 2, PAVITHRA APARTMENTS,<br>
+                Madambakkam, Tambaram,<br>
+                Kanchipuram - 600126, Tamil Nadu, India.
+              </div>
+              <div class="address-badge">
+                <i class="fa-solid fa-circle-check"></i> On-farm field demonstrations conducted across Tamil Nadu
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT SIDE: Book a Demonstration Form -->
+          <div class="book-demo-form-card" id="bookDemoSection">
+            
+            <h3 class="demo-form-title">Book a Demonstration</h3>
+            <p class="demo-form-subtitle">Fill in your farm details below to schedule an on-site trial.</p>
+
+            <div class="demo-redirect-notice" id="demoRedirectBanner">
+              <i class="fa-solid fa-bullseye text-mustard fa-lg"></i>
+              <div>
+                <strong>Selected For Trial:</strong> <span id="demoItemName">Power Weeder</span>
+              </div>
+            </div>
+
+            <form id="harvtechBookDemoForm" novalidate>
+              
+              <!-- 1. Full Name -->
+              <div class="form-group">
+                <label for="demoName" class="form-label">Full Name <span>*</span></label>
+                <input type="text" id="demoName" name="name" class="form-control" placeholder="e.g. Ramesh Kumar" required>
+              </div>
+
+              <!-- 2. Contact Number -->
+              <div class="form-group">
+                <label for="demoPhone" class="form-label">Contact Number <span>*</span></label>
+                <input type="tel" id="demoPhone" name="phone" class="form-control" placeholder="+91 98765 43210" required>
+              </div>
+
+              <!-- 3. Email Address -->
+              <div class="form-group">
+                <label for="demoEmail" class="form-label">Email Address <span>*</span></label>
+                <input type="email" id="demoEmail" name="email" class="form-control" placeholder="ramesh@example.com" required>
+              </div>
+
+              <!-- 4. Location -->
+              <div class="form-group">
+                <label for="demoLocation" class="form-label">Farm / Village Location <span>*</span></label>
+                <input type="text" id="demoLocation" name="location" class="form-control" placeholder="e.g. Madambakkam, Kanchipuram District" required>
+              </div>
+
+              <!-- 5. Product Interested In (Dropdown) -->
+              <div class="form-group">
+                <label for="demoProductSelect" class="form-label">Product Interested In <span>*</span></label>
+                <select id="demoProductSelect" name="product" class="form-control" required>
+                  <option value="Power Weeder" selected>Power Weeder (Currently Available)</option>
+                  <option value="Tiller">Tiller (Coming Soon - Waitlist)</option>
+                  <option value="Mini Tractor">Mini Tractor (Coming Soon - Waitlist)</option>
+                </select>
+              </div>
+
+              <!-- 6. Additional Message (optional) -->
+              <div class="form-group">
+                <label for="demoMessage" class="form-label">Additional Message <span style="color:var(--text-dim);">(optional)</span></label>
+                <textarea id="demoMessage" name="message" class="form-control" placeholder="Tell us about your soil type, crops grown, acreage, or preferred trial dates..."></textarea>
+              </div>
+
+              <!-- Send Request Button -->
+              <button type="submit" class="btn-send-request">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Send Request</span>
+              </button>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div>
+          <a href="#home" class="brand-link spa-trigger" data-page="home">
+            <div class="logo-frame" style="height: 44px;">
+              <img src="assets/images/harvtech-logo.jpg" alt="HARVTECH Logo" class="brand-logo-img" style="height: 38px;">
+            </div>
+            <div class="brand-text-block">
+              <span class="brand-name">H A R V<span>T E C H</span></span>
+              <span class="brand-subline">Private Limited</span>
+            </div>
+          </a>
+          <p class="footer-brand-desc">
+            Pioneering the electric revolution in agriculture. High-torque zero-emission power weeders, tillers, and compact tractors engineered for sustainable farm resilience.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home" class="spa-trigger" data-page="home">Home</a></li>
+            <li><a href="#products" class="spa-trigger" data-page="products">Products</a></li>
+            <li><a href="#gallery" class="spa-trigger" data-page="gallery">Company Gallery</a></li>
+            <li><a href="#contact-us" class="spa-trigger" data-page="contact-us">Contact Us & Book Demo</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Machinery Portfolio</h4>
+          <ul class="footer-links">
+            <li><a href="#products" class="spa-trigger" data-page="products">Product 1: Power Weeder <span style="color:#10b981; font-size:0.75rem; font-weight:700;">(Available)</span></a></li>
+            <li><a href="#products" class="spa-trigger" data-page="products">Product 2: Tiller <span style="color:var(--mustard); font-size:0.75rem;">(Coming Soon)</span></a></li>
+            <li><a href="#products" class="spa-trigger" data-page="products">Product 3: Mini Tractor <span style="color:var(--mustard); font-size:0.75rem;">(Coming Soon)</span></a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; <span id="currentYear">2026</span> Harvtech Private Limited. All rights reserved.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="mailto:harvtechllp@gmail.com">harvtechllp@gmail.com</a>
+          <span>•</span>
+          <a href="https://www.instagram.com/its_harvtech" target="_blank" rel="noopener noreferrer">@its_harvtech</a>
+          <span>•</span>
+          <a href="https://www.linkedin.com/search/results/all/?keywords=HARVTECH" target="_blank" rel="noopener noreferrer">HARVTECH on LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Lightbox Modal with Next/Previous Navigation -->
+  <div class="lightbox-modal" id="lightboxModal" aria-hidden="true" role="dialog" aria-label="Visual Gallery Lightbox">
+    <div class="lightbox-container">
+      
+      <!-- Top Bar: Counter & Close -->
+      <div class="lightbox-topbar">
+        <span class="lightbox-counter" id="lightboxCounter">1 / 5</span>
+        <button type="button" class="lightbox-close-btn" id="lightboxClose" aria-label="Close Lightbox">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Main Stage with Prev / Next Buttons -->
+      <div class="lightbox-stage">
+        <button type="button" class="lightbox-nav-btn prev" id="lightboxPrev" aria-label="Previous Image">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <div class="lightbox-image-wrap">
+          <img src="" alt="Enlarged Visual Gallery View" class="lightbox-img" id="lightboxImg">
+        </div>
+
+        <button type="button" class="lightbox-nav-btn next" id="lightboxNext" aria-label="Next Image">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Bottom Details: Title, Tag, and Story Description -->
+      <div class="lightbox-info-pane">
+        <div class="lightbox-tag-row">
+          <span class="lightbox-tag" id="lightboxTag">Ministerial Milestone</span>
+        </div>
+        <h3 class="lightbox-title" id="lightboxTitle"></h3>
+        <p class="lightbox-desc" id="lightboxDesc"></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-notice" id="toastNotice" role="alert" aria-live="assertive"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="js/app.js"></script>
+</body>
+</html>
