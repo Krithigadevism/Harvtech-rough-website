@@ -202,6 +202,9 @@ function initHomepageScrollVideo() {
   video.addEventListener('seeked', () => {
     isSeeking = false;
   });
+  video.addEventListener('error', () => {
+    isSeeking = false;
+  });
 
   // 60FPS Smooth Interpolation Loop (Decouples scroll from video decoder)
   function smoothPlaybackLoop() {
@@ -212,7 +215,7 @@ function initHomepageScrollVideo() {
         currentSmoothTime += diff * 0.16;
         currentSmoothTime = Math.max(0, Math.min(videoDuration - 0.04, currentSmoothTime));
 
-        if (!video.seeking && !isSeeking) {
+        if (!video.seeking && !isSeeking && video.readyState >= 1) {
           isSeeking = true;
           try {
             video.currentTime = currentSmoothTime;
