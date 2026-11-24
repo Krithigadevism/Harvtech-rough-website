@@ -11,7 +11,7 @@
   <meta name="author" content="Harvtech Private Limited">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="css/assets/images/harvtech-logo.jpg">
+  <link rel="icon" type="image/png" href="css/assets/images/harvtech-emblem-clean.png">
   
   <!-- Google Fonts: Space/Industrial Futurist Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,56 +38,77 @@
   <header class="site-header">
     <div class="container nav-container">
       
-      <!-- Company Logo & Name on Left Side Corner -->
+      <!-- Company Logo & Official Typography (Transparent Background, Mingled Seamlessly) -->
       <a href="#home" class="brand-link spa-trigger" data-page="home" title="Harvtech Private Limited">
-        <div class="logo-frame">
-          <img src="css/assets/images/harvtech-logo.jpg" alt="HARVTECH Logo" class="brand-logo-img">
-        </div>
+        <img src="css/assets/images/harvtech-emblem-clean.png" alt="HARVTECH Emblem" class="brand-emblem-img">
         <div class="brand-text-block">
-          <span class="brand-name">H A R V<span>T E C H</span></span>
-          <span class="brand-subline">Private Limited</span>
+          <img src="css/assets/images/harvtech-logotype-twotone.png" alt="HARVTECH" class="brand-wordmark-img">
+          <span class="brand-subline">PRIVATE LIMITED</span>
         </div>
       </a>
 
-      <!-- Right Side Navigation: Home, Products, Gallery, Contact Us -->
-      <nav aria-label="Main Navigation">
-        <ul class="nav-menu" id="navMenu">
+      <!-- 3D Floating Hamburger Button on Right Side Corner (Matches Reference Image) -->
+      <button type="button" class="floating-3d-hamburger-btn" id="floatingMenuBtn" aria-label="Toggle Side Menu" title="Click to open menu">
+        <span class="btn-glow-ring"></span>
+        <span class="hamburger-box">
+          <span class="hamburger-line line-1"></span>
+          <span class="hamburger-line line-2"></span>
+          <span class="hamburger-line line-3"></span>
+        </span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- 3D Floating Right-Side Menu Bar (Overlay Backdrop & 3D Panel) -->
+  <div class="side-menu-backdrop" id="sideMenuBackdrop"></div>
+
+  <aside class="side-menu-3d-panel" id="sideMenuPanel" aria-label="Main Navigation Menu">
+    <div class="side-menu-inner">
+      
+      <!-- Panel Header: Harvtech Logo + Close Button -->
+      <div class="side-menu-header">
+        <div class="side-menu-brand">
+          <img src="css/assets/images/harvtech-logotype-twotone.png" alt="HARVTECH" class="side-brand-wordmark">
+          <span class="side-brand-subline">PRIVATE LIMITED</span>
+        </div>
+        <button type="button" class="side-menu-close-btn" id="sideMenuCloseBtn" aria-label="Close Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Navigation Links (Stacked 3D Floating Pills) -->
+      <nav class="side-menu-nav">
+        <ul class="side-menu-list" id="sideMenuList">
           <li>
-            <a href="#home" class="nav-link active" data-page="home">
-              <i class="fa-solid fa-house"></i>
-              <span>Home</span>
+            <a href="#home" class="side-nav-link nav-link active" data-page="home">
+              <span class="side-icon-box"><i class="fa-solid fa-house"></i></span>
+              <span class="side-link-text">Home</span>
             </a>
           </li>
           <li>
-            <a href="#products" class="nav-link" data-page="products">
-              <i class="fa-solid fa-cubes-stacked"></i>
-              <span>Products</span>
+            <a href="#products" class="side-nav-link nav-link" data-page="products">
+              <span class="side-icon-box"><i class="fa-solid fa-tractor"></i></span>
+              <span class="side-link-text">Products</span>
             </a>
           </li>
           <li>
-            <a href="#gallery" class="nav-link" data-page="gallery">
-              <i class="fa-solid fa-images"></i>
-              <span>Gallery</span>
+            <a href="#gallery" class="side-nav-link nav-link" data-page="gallery">
+              <span class="side-icon-box"><i class="fa-solid fa-images"></i></span>
+              <span class="side-link-text">Gallery</span>
             </a>
           </li>
           <li>
-            <a href="#contact-us" class="nav-link" data-page="contact-us">
-              <i class="fa-solid fa-paper-plane"></i>
-              <span>Contact Us</span>
+            <a href="#contact-us" class="side-nav-link nav-link" data-page="contact-us">
+              <span class="side-icon-box"><i class="fa-solid fa-paper-plane"></i></span>
+              <span class="side-link-text">Contact Us</span>
             </a>
           </li>
         </ul>
       </nav>
 
-      <!-- Mobile Drawer Toggle -->
-      <div class="nav-actions">
-        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation Menu">
-          <i class="fa-solid fa-bars fa-lg"></i>
-        </button>
-      </div>
-
     </div>
-  </header>
+  </aside>
 
   <!-- ========================================================================
        MAIN VIEWPORT CONTAINER
@@ -214,8 +235,8 @@
          PAGE 2: PRODUCTS SECTION
          Order:
            1. Power Weeder (Hero, Currently Available, Multi-Angle 360 viewer, Book Demo)
-           2. Tiller (Coming Soon)
-           3. Mini Tractor (Coming Soon)
+           2. Mini Tractor (Coming Soon - Red Curtain Unveil)
+           3. Electric Tractor (Coming Soon - Red Curtain Unveil)
          ====================================================================== -->
     <section id="products" class="page-view">
       <div class="container">
@@ -339,7 +360,7 @@
           </div>
         </div>
 
-        <!-- COMING SOON SECONDARY PRODUCTS (Order: 2. Tiller, 3. Mini Tractor) -->
+        <!-- COMING SOON SECONDARY PRODUCTS (Order: 2. Mini Tractor, 3. Electric Tractor) -->
         <h3 class="coming-soon-heading">
           <i class="fa-solid fa-hourglass-half text-mustard"></i>
           Upcoming Machinery Fleet
@@ -347,46 +368,54 @@
 
         <div class="secondary-products-grid">
           
-          <!-- PRODUCT 2: TILLER (COMING SOON) -->
-          <div class="product-card">
+          <!-- PRODUCT 2: MINI TRACTOR (COMING SOON WITH RED CURTAIN) -->
+          <div class="product-card curtain-card" id="cardMiniTractor">
             <div class="product-card-thumb">
-              <img src="css/assets/images/electric-tiller.jpg" alt="Harvtech Electric Tiller">
-              <div class="badge-coming-soon">Coming Soon</div>
+              <img src="css/assets/images/mini-tractor-covered-red-curtain.jpg" alt="Harvtech Electric Mini Tractor Covered in Red Curtain">
+              <div class="curtain-sparkle-overlay"></div>
+              <div class="curtain-stage-tag"><i class="fa-solid fa-scroll"></i> Red Curtain Unveil</div>
+              <div class="badge-coming-soon curtain-gold-badge">
+                <i class="fa-solid fa-sparkles"></i> Coming Soon
+              </div>
             </div>
             <div class="product-card-body">
-              <h4 class="product-card-title">Product 2: Harvtech Electric Tiller</h4>
+              <h4 class="product-card-title">Product 2: Harvtech Electric Mini Tractor</h4>
               <p class="product-card-desc">
-                Heavy-duty rotary tiller designed for deep soil pulverisation and nursery preparation. Powered by an IP67 sealed high-torque electric transaxle with vibration-dampened dual grips.
+                Compact, high-clearance electric mini tractor designed for orchard spray operations, bed shaping, inter-cultivation, and greenhouse farming. Powered by zero-emission dual high-torque motors.
               </p>
               <ul class="product-card-specs">
-                <li><i class="fa-solid fa-check"></i> Hardened Boron Steel Helical Blades</li>
-                <li><i class="fa-solid fa-check"></i> Dual Swappable High-Current Battery Enclosure</li>
-                <li><i class="fa-solid fa-check"></i> Multi-Speed Forward and Reverse Drive Control</li>
+                <li><i class="fa-solid fa-check"></i> 15HP Continuous Electric Torque Output</li>
+                <li><i class="fa-solid fa-check"></i> Quick-Swappable High-Current Battery Enclosure</li>
+                <li><i class="fa-solid fa-check"></i> Standard Cat-1 Three-Point Hitch & 540 RPM PTO</li>
               </ul>
-              <div class="btn-disabled-notice">
-                <i class="fa-solid fa-lock" style="margin-right: 0.4rem;"></i> COMING SOON • R&D Final Validation
+              <div class="btn-disabled-notice curtain-status-notice">
+                <i class="fa-solid fa-lock" style="margin-right: 0.4rem;"></i> COMING SOON • Unveiling Soon
               </div>
             </div>
           </div>
 
-          <!-- PRODUCT 3: MINI TRACTOR (COMING SOON) -->
-          <div class="product-card">
+          <!-- PRODUCT 3: ELECTRIC TRACTOR (COMING SOON WITH RED CURTAIN) -->
+          <div class="product-card curtain-card" id="cardElectricTractor">
             <div class="product-card-thumb">
-              <img src="css/assets/images/mini-tractor.jpg" alt="Harvtech Electric Mini Tractor">
-              <div class="badge-coming-soon">Coming Soon</div>
+              <img src="css/assets/images/tractor-covered-red-curtain.jpg" alt="Harvtech Electric Tractor Covered in Red Curtain">
+              <div class="curtain-sparkle-overlay"></div>
+              <div class="curtain-stage-tag"><i class="fa-solid fa-scroll"></i> Red Curtain Unveil</div>
+              <div class="badge-coming-soon curtain-gold-badge">
+                <i class="fa-solid fa-sparkles"></i> Coming Soon
+              </div>
             </div>
             <div class="product-card-body">
-              <h4 class="product-card-title">Product 3: Harvtech Electric Mini Tractor</h4>
+              <h4 class="product-card-title">Product 3: Harvtech Electric Tractor</h4>
               <p class="product-card-desc">
-                Compact, high-clearance electric tractor designed for orchard spray operations, bed shaping, and inter-cultivation. Dual independent electric motors with regenerative braking.
+                Full-scale zero-emission smart agricultural tractor built for heavy-duty plowing, autonomous field navigation, and sustainable high-acreage farm mechanisation. Powered by high-torque electric powertrain.
               </p>
               <ul class="product-card-specs">
-                <li><i class="fa-solid fa-check"></i> 15HP Equivalent Continuous Torque Output</li>
-                <li><i class="fa-solid fa-check"></i> Standard Cat-1 Three-Point Hitch & 540 RPM PTO</li>
-                <li><i class="fa-solid fa-check"></i> Autonomous Row Following Sensor Ready</li>
+                <li><i class="fa-solid fa-check"></i> 40HP+ Equivalent High-Torque Pure Electric Powertrain</li>
+                <li><i class="fa-solid fa-check"></i> Autonomous GPS Row-Following & Smart Sensor Vision</li>
+                <li><i class="fa-solid fa-check"></i> Heavy-Duty Hydraulic 3-Point Hitch & Dual Remotes</li>
               </ul>
-              <div class="btn-disabled-notice">
-                <i class="fa-solid fa-lock" style="margin-right: 0.4rem;"></i> COMING SOON • Prototyping Stage
+              <div class="btn-disabled-notice curtain-status-notice">
+                <i class="fa-solid fa-lock" style="margin-right: 0.4rem;"></i> COMING SOON • Unveiling Soon
               </div>
             </div>
           </div>
@@ -418,102 +447,117 @@
           </div>
         </div>
 
-        <!-- Asymmetric Visual Grid: Top Row (2 Items: Large Landscape + Medium) & Bottom Row (3 Equal Items) -->
+        <!-- Even-Sized Uniform Visual Gallery Grid (Matching Reference Design) -->
         <div class="visual-gallery-grid" id="visualGalleryGrid">
 
-          <!-- TOP ROW: Large Landscape (62%) + Medium (38%) -->
-          <div class="gallery-row-top">
-            
-            <!-- ITEM 1: Large Landscape Image -->
-            <div class="gallery-card item-large-landscape" data-index="0" data-img="css/assets/images/gallery/startup-tn-tanseed-group.jpg" data-tag="StartupTN & TANSEED" data-title="StartupTN & TANSEED Awardees Cohort" data-desc="Our founders had the pleasure of meeting Mr. Singai G Ramachandran Sir, Chairman of StartupTN, and exchanging thoughts, insights, and experiences on strengthening Tamil Nadu's startup ecosystem. As proud TANSEED awardees, we sincerely appreciate the initiatives taken towards empowering early-stage startups through funding, mentorship, and ecosystem support. It was a wonderful opportunity to share our journey at HARVTECH, discuss our experiences, and understand the vision for creating more opportunities for emerging entrepreneurs across Tamil Nadu. We look forward to being part of this growing ecosystem and contributing towards building impactful innovations.">
-              <div class="gallery-card-media">
-                <img src="css/assets/images/gallery/startup-tn-tanseed-group.jpg" alt="StartupTN TANSEED Awardees Cohort" loading="lazy">
-                <div class="gallery-card-overlay">
-                  <div class="overlay-badge-row">
-                    <span class="overlay-badge"><i class="fa-solid fa-seedling"></i> StartupTN & TANSEED</span>
-                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
-                  </div>
-                  <div class="overlay-text-block">
-                    <h3 class="overlay-title">StartupTN & TANSEED Awardees Cohort</h3>
-                    <p class="overlay-snippet">Founders with Mr. Singai G Ramachandran Sir and fellow TANSEED innovators strengthening Tamil Nadu's ecosystem.</p>
-                  </div>
-                </div>
+          <!-- ITEM 1: StartupTN TANSEED Awardees Cohort -->
+          <div class="gallery-card" data-index="0" data-img="css/assets/images/gallery/startup-tn-tanseed-group.jpg" data-tag="StartupTN & TANSEED" data-title="StartupTN & TANSEED Awardees Cohort" data-desc="Our founders had the pleasure of meeting Mr. Singai G Ramachandran Sir, Chairman of StartupTN, and exchanging thoughts, insights, and experiences on strengthening Tamil Nadu's startup ecosystem. As proud TANSEED awardees, we sincerely appreciate the initiatives taken towards empowering early-stage startups through funding, mentorship, and ecosystem support. It was a wonderful opportunity to share our journey at HARVTECH, discuss our experiences, and understand the vision for creating more opportunities for emerging entrepreneurs across Tamil Nadu. We look forward to being part of this growing ecosystem and contributing towards building impactful innovations.">
+            <div class="gallery-card-media">
+              <div class="gallery-card-bg-blur" style="background-image: url('css/assets/images/gallery/startup-tn-tanseed-group.jpg');"></div>
+              <img src="css/assets/images/gallery/startup-tn-tanseed-group.jpg" alt="StartupTN TANSEED Awardees Cohort" loading="lazy">
+              <div class="gallery-card-badge-row">
+                <span class="gallery-card-badge"><i class="fa-solid fa-seedling"></i> StartupTN & TANSEED</span>
+                <span class="gallery-card-expand" title="Expand photo"><i class="fa-solid fa-maximize"></i></span>
               </div>
             </div>
-
-            <!-- ITEM 2: Medium-Sized Image -->
-            <div class="gallery-card item-medium-featured" data-index="1" data-img="css/assets/images/gallery/electric-tractor-launch-minister-trb-rajaa.png" data-tag="Ministerial Milestone" data-title="Autonomous Electric Tractor Inauguration & Launch" data-desc="We are delighted to share that our autonomous electric tractor was inaugurated and launched by the Hon'ble Minister of Industries, Investments and Commerce Dr. TRB Rajaa. 🙏 It was an inspiring moment as the Minister appreciated our vision to transform agriculture through innovation, sustainability, and technology. His words of encouragement motivate us to continue building solutions that empower farmers and shape a smarter, cleaner future for Indian agriculture. 🌾 This milestone marks not just a product launch — but a step toward redefining how farming and technology coexist. A heartfelt thank you to everyone who believed in us and stood by our journey. The road ahead is electric! ⚡">
-              <div class="gallery-card-media">
-                <img src="css/assets/images/gallery/electric-tractor-launch-minister-trb-rajaa.png" alt="Inauguration and launch of Harvtech autonomous electric tractor by Hon'ble Minister Dr. TRB Rajaa" loading="lazy">
-                <div class="gallery-card-overlay">
-                  <div class="overlay-badge-row">
-                    <span class="overlay-badge"><i class="fa-solid fa-bolt"></i> Ministerial Launch</span>
-                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
-                  </div>
-                  <div class="overlay-text-block">
-                    <h3 class="overlay-title">Autonomous Electric Tractor Inauguration</h3>
-                    <p class="overlay-snippet">Inaugurated and launched by Hon'ble Minister of Industries, Investments & Commerce Dr. TRB Rajaa.</p>
-                  </div>
-                </div>
+            <div class="gallery-card-info">
+              <h3 class="gallery-card-title">StartupTN & TANSEED Awardees Cohort</h3>
+              <p class="gallery-card-desc">Founders with Mr. Singai G Ramachandran Sir and fellow TANSEED innovators strengthening Tamil Nadu's startup ecosystem.</p>
+              <div class="gallery-card-footer">
+                <span class="gallery-card-action">
+                  <span>View Full Milestone</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
               </div>
             </div>
-
           </div>
 
-          <!-- BOTTOM ROW: 3 Smaller/Medium Images Arranged Neatly Below -->
-          <div class="gallery-row-bottom">
-
-            <!-- ITEM 3: Bottom Left Image -->
-            <div class="gallery-card item-bottom-tri" data-index="2" data-img="css/assets/images/gallery/startup-tn-founders.jpg" data-tag="Leadership & Vision" data-title="Founders with StartupTN Chairman" data-desc="Our founders with Mr. Singai G Ramachandran Sir, Chairman of StartupTN, discussing agritech innovation opportunities for emerging entrepreneurs across Tamil Nadu. Sharing our journey at HARVTECH and our vision for zero-emission smart farm machinery.">
-              <div class="gallery-card-media">
-                <img src="css/assets/images/gallery/startup-tn-founders.jpg" alt="Harvtech Founders with Mr. Singai G Ramachandran Sir, Chairman of StartupTN" loading="lazy">
-                <div class="gallery-card-overlay">
-                  <div class="overlay-badge-row">
-                    <span class="overlay-badge"><i class="fa-solid fa-handshake"></i> Leadership</span>
-                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
-                  </div>
-                  <div class="overlay-text-block">
-                    <h3 class="overlay-title">Founders with StartupTN Chairman</h3>
-                    <p class="overlay-snippet">Harvtech founders in discussion with Mr. Singai G Ramachandran Sir on rural mechanisation.</p>
-                  </div>
-                </div>
+          <!-- ITEM 2: Ministerial Tractor Launch -->
+          <div class="gallery-card" data-index="1" data-img="css/assets/images/gallery/electric-tractor-launch-minister-trb-rajaa.png" data-tag="Ministerial Launch" data-title="Autonomous Electric Tractor Inauguration & Launch" data-desc="We are delighted to share that our autonomous electric tractor was inaugurated and launched by the Hon'ble Minister of Industries, Investments and Commerce Dr. TRB Rajaa. 🙏 It was an inspiring moment as the Minister appreciated our vision to transform agriculture through innovation, sustainability, and technology. His words of encouragement motivate us to continue building solutions that empower farmers and shape a smarter, cleaner future for Indian agriculture. 🌾 This milestone marks not just a product launch — but a step toward redefining how farming and technology coexist. A heartfelt thank you to everyone who believed in us and stood by our journey. The road ahead is electric! ⚡">
+            <div class="gallery-card-media">
+              <div class="gallery-card-bg-blur" style="background-image: url('css/assets/images/gallery/electric-tractor-launch-minister-trb-rajaa.png');"></div>
+              <img src="css/assets/images/gallery/electric-tractor-launch-minister-trb-rajaa.png" alt="Inauguration and launch of Harvtech autonomous electric tractor by Hon'ble Minister Dr. TRB Rajaa" loading="lazy">
+              <div class="gallery-card-badge-row">
+                <span class="gallery-card-badge"><i class="fa-solid fa-bolt"></i> Ministerial Launch</span>
+                <span class="gallery-card-expand" title="Expand photo"><i class="fa-solid fa-maximize"></i></span>
               </div>
             </div>
-
-            <!-- ITEM 4: Bottom Center Image -->
-            <div class="gallery-card item-bottom-tri" data-index="3" data-img="css/assets/images/gallery/sustainability-accelerator-cohort.png" data-tag="Climate Scale-up" data-title="Sustainability Accelerator Climate Cohort" data-desc="What a transformative experience it has been! A dynamic bootcamp filled with Founder Talks, Training & Brainstorming sessions, Innovation Workshops and Climate Pitch Day. Uniting pioneers in sustainable energy and clean technology across India.">
-              <div class="gallery-card-media">
-                <img src="css/assets/images/gallery/sustainability-accelerator-cohort.png" alt="Sustainability Accelerator full cohort photo" loading="lazy">
-                <div class="gallery-card-overlay">
-                  <div class="overlay-badge-row">
-                    <span class="overlay-badge"><i class="fa-solid fa-leaf"></i> Climate Cohort</span>
-                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
-                  </div>
-                  <div class="overlay-text-block">
-                    <h3 class="overlay-title">Sustainability Accelerator Cohort</h3>
-                    <p class="overlay-snippet">National Climate Solutions Scale-up Bootcamp with The Sustainability Mafia and FITT.</p>
-                  </div>
-                </div>
+            <div class="gallery-card-info">
+              <h3 class="gallery-card-title">Autonomous Electric Tractor Inauguration</h3>
+              <p class="gallery-card-desc">Inaugurated and launched by Hon'ble Minister of Industries, Investments & Commerce Dr. TRB Rajaa.</p>
+              <div class="gallery-card-footer">
+                <span class="gallery-card-action">
+                  <span>View Full Milestone</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
               </div>
             </div>
+          </div>
 
-            <!-- ITEM 5: Bottom Right Image -->
-            <div class="gallery-card item-bottom-tri" data-index="4" data-img="css/assets/images/gallery/sustainability-accelerator-team.png" data-tag="Pitch Day & Mentorship" data-title="Harvtech Team & Industry Mentors" data-desc="Here's to innovation, sustainability and game-changing ideas that will shape the future! A huge thank you to the mentors and organizers for their collaboration, insightful sessions, and guidance throughout the acceleration program.">
-              <div class="gallery-card-media">
-                <img src="css/assets/images/gallery/sustainability-accelerator-team.png" alt="Harvtech Team with organizers at the Sustainability Accelerator banner" loading="lazy">
-                <div class="gallery-card-overlay">
-                  <div class="overlay-badge-row">
-                    <span class="overlay-badge"><i class="fa-solid fa-award"></i> Mentorship</span>
-                    <span class="overlay-expand-btn"><i class="fa-solid fa-maximize"></i></span>
-                  </div>
-                  <div class="overlay-text-block">
-                    <h3 class="overlay-title">Harvtech Team & Mentors</h3>
-                    <p class="overlay-snippet">Founders and team at the Climate Solutions Scale-up Showcase in front of the official banner.</p>
-                  </div>
-                </div>
+          <!-- ITEM 3: Founders with StartupTN Chairman -->
+          <div class="gallery-card" data-index="2" data-img="css/assets/images/gallery/startup-tn-founders.jpg" data-tag="Leadership" data-title="Founders with StartupTN Chairman" data-desc="Our founders with Mr. Singai G Ramachandran Sir, Chairman of StartupTN, discussing agritech innovation opportunities for emerging entrepreneurs across Tamil Nadu. Sharing our journey at HARVTECH and our vision for zero-emission smart farm machinery.">
+            <div class="gallery-card-media">
+              <div class="gallery-card-bg-blur" style="background-image: url('css/assets/images/gallery/startup-tn-founders.jpg');"></div>
+              <img src="css/assets/images/gallery/startup-tn-founders.jpg" alt="Harvtech Founders with Mr. Singai G Ramachandran Sir, Chairman of StartupTN" loading="lazy">
+              <div class="gallery-card-badge-row">
+                <span class="gallery-card-badge"><i class="fa-solid fa-handshake"></i> Leadership</span>
+                <span class="gallery-card-expand" title="Expand photo"><i class="fa-solid fa-maximize"></i></span>
               </div>
             </div>
+            <div class="gallery-card-info">
+              <h3 class="gallery-card-title">Founders with StartupTN Chairman</h3>
+              <p class="gallery-card-desc">Harvtech founders in discussion with Mr. Singai G Ramachandran Sir on rural mechanisation and startup growth.</p>
+              <div class="gallery-card-footer">
+                <span class="gallery-card-action">
+                  <span>View Full Milestone</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
 
+          <!-- ITEM 4: Sustainability Accelerator Cohort -->
+          <div class="gallery-card" data-index="3" data-img="css/assets/images/gallery/sustainability-accelerator-cohort.png" data-tag="Climate Cohort" data-title="Sustainability Accelerator Cohort" data-desc="What a transformative experience it has been! A dynamic bootcamp filled with Founder Talks, Training & Brainstorming sessions, Innovation Workshops and Climate Pitch Day. Uniting pioneers in sustainable energy and clean technology across India.">
+            <div class="gallery-card-media">
+              <div class="gallery-card-bg-blur" style="background-image: url('css/assets/images/gallery/sustainability-accelerator-cohort.png');"></div>
+              <img src="css/assets/images/gallery/sustainability-accelerator-cohort.png" alt="Sustainability Accelerator full cohort photo" loading="lazy">
+              <div class="gallery-card-badge-row">
+                <span class="gallery-card-badge"><i class="fa-solid fa-leaf"></i> Climate Cohort</span>
+                <span class="gallery-card-expand" title="Expand photo"><i class="fa-solid fa-maximize"></i></span>
+              </div>
+            </div>
+            <div class="gallery-card-info">
+              <h3 class="gallery-card-title">Sustainability Accelerator Cohort</h3>
+              <p class="gallery-card-desc">National Climate Solutions Scale-up Bootcamp with The Sustainability Mafia and FITT IIT Delhi.</p>
+              <div class="gallery-card-footer">
+                <span class="gallery-card-action">
+                  <span>View Full Milestone</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ITEM 5: Harvtech Team & Mentors -->
+          <div class="gallery-card" data-index="4" data-img="css/assets/images/gallery/sustainability-accelerator-team.png" data-tag="Mentorship" data-title="Harvtech Team & Mentors" data-desc="Here's to innovation, sustainability and game-changing ideas that will shape the future! A huge thank you to the mentors and organizers for their collaboration, insightful sessions, and guidance throughout the acceleration program.">
+            <div class="gallery-card-media">
+              <div class="gallery-card-bg-blur" style="background-image: url('css/assets/images/gallery/sustainability-accelerator-team.png');"></div>
+              <img src="css/assets/images/gallery/sustainability-accelerator-team.png" alt="Harvtech Team with organizers at the Sustainability Accelerator banner" loading="lazy">
+              <div class="gallery-card-badge-row">
+                <span class="gallery-card-badge"><i class="fa-solid fa-award"></i> Mentorship</span>
+                <span class="gallery-card-expand" title="Expand photo"><i class="fa-solid fa-maximize"></i></span>
+              </div>
+            </div>
+            <div class="gallery-card-info">
+              <h3 class="gallery-card-title">Harvtech Team & Mentors</h3>
+              <p class="gallery-card-desc">Founders and team at the Climate Solutions Scale-up Showcase in front of the official showcase banner.</p>
+              <div class="gallery-card-footer">
+                <span class="gallery-card-action">
+                  <span>View Full Milestone</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </span>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -666,8 +710,8 @@
                 <label for="demoProductSelect" class="form-label">Product Interested In <span>*</span></label>
                 <select id="demoProductSelect" name="product" class="form-control" required>
                   <option value="Power Weeder" selected>Power Weeder (Currently Available)</option>
-                  <option value="Tiller">Tiller (Coming Soon - Waitlist)</option>
-                  <option value="Mini Tractor">Mini Tractor (Coming Soon - Waitlist)</option>
+                  <option value="Mini Tractor">Product 2: Mini Tractor (Coming Soon - Waitlist)</option>
+                  <option value="Electric Tractor">Product 3: Electric Tractor (Coming Soon - Waitlist)</option>
                 </select>
               </div>
 
@@ -703,16 +747,14 @@
         
         <div>
           <a href="#home" class="brand-link spa-trigger" data-page="home">
-            <div class="logo-frame" style="height: 44px;">
-              <img src="css/assets/images/harvtech-logo.jpg" alt="HARVTECH Logo" class="brand-logo-img" style="height: 38px;">
-            </div>
+            <img src="css/assets/images/harvtech-emblem-clean.png" alt="HARVTECH Emblem" class="brand-emblem-img" style="height: 38px;">
             <div class="brand-text-block">
-              <span class="brand-name">H A R V<span>T E C H</span></span>
-              <span class="brand-subline">Private Limited</span>
+              <img src="css/assets/images/harvtech-logotype-twotone.png" alt="HARVTECH" class="brand-wordmark-img" style="height: 20px;">
+              <span class="brand-subline">PRIVATE LIMITED</span>
             </div>
           </a>
           <p class="footer-brand-desc">
-            Pioneering the electric revolution in agriculture. High-torque zero-emission power weeders, tillers, and compact tractors engineered for sustainable farm resilience.
+            Pioneering the electric revolution in agriculture. High-torque zero-emission power weeders, mini tractors, and electric tractors engineered for sustainable farm resilience.
           </p>
         </div>
 
@@ -730,8 +772,8 @@
           <h4 class="footer-col-title">Machinery Portfolio</h4>
           <ul class="footer-links">
             <li><a href="#products" class="spa-trigger" data-page="products">Product 1: Power Weeder <span style="color:#10b981; font-size:0.75rem; font-weight:700;">(Available)</span></a></li>
-            <li><a href="#products" class="spa-trigger" data-page="products">Product 2: Tiller <span style="color:var(--mustard); font-size:0.75rem;">(Coming Soon)</span></a></li>
-            <li><a href="#products" class="spa-trigger" data-page="products">Product 3: Mini Tractor <span style="color:var(--mustard); font-size:0.75rem;">(Coming Soon)</span></a></li>
+            <li><a href="#products" class="spa-trigger" data-page="products">Product 2: Mini Tractor <span style="color:var(--mustard); font-size:0.75rem;">(Coming Soon)</span></a></li>
+            <li><a href="#products" class="spa-trigger" data-page="products">Product 3: Electric Tractor <span style="color:var(--mustard); font-size:0.75rem;">(Coming Soon)</span></a></li>
           </ul>
         </div>
 

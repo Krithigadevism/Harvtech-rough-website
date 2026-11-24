@@ -127,133 +127,394 @@ h1, h2, h3, h4, .brand-font {
 /* ==========================================================================
    NAVIGATION BAR (Logo Left: H A R V T E C H, Right: Home, Products, Gallery, Contact Us)
    ========================================================================== */
+/* ==========================================================================
+   FLOATING GLASS BUBBLE NAVBAR & BUBBLE BUTTONS (Inspired by Flo Mobility)
+   ========================================================================== */
 .site-header {
   position: fixed;
-  top: 0;
+  top: 1rem;
   left: 0;
   width: 100%;
-  height: var(--nav-height);
-  background: rgba(8, 9, 10, 0.82);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--border-subtle);
   z-index: 1000;
+  pointer-events: none;
   transition: var(--transition-smooth);
 }
 
-.site-header.scrolled {
-  background: rgba(6, 7, 8, 0.96);
-  border-bottom: 1px solid var(--border-mustard);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-}
-
 .nav-container {
+  pointer-events: auto;
+  max-width: 1200px;
+  width: calc(100% - 2.5rem);
+  margin: 0 auto;
+  padding: 0.52rem 1.4rem;
+  background: rgba(12, 14, 20, 0.58);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-full);
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.45),
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Left: Harvtech Logo + "Harvtech Private Limited" (No "agri machinery") */
+.site-header.scrolled .nav-container {
+  background: rgba(8, 9, 14, 0.88);
+  border-color: rgba(229, 169, 16, 0.35);
+  box-shadow: 
+    0 20px 48px rgba(0, 0, 0, 0.7),
+    0 0 24px rgba(229, 169, 16, 0.12),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Left: Official Harvtech Brand Identity (Seamlessly Mingled, Transparent) */
 .brand-link {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.8rem;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 0.25s ease;
+  background: transparent;
+  padding: 0;
+  border: none;
+  transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
 .brand-link:hover {
   transform: translateY(-1px);
+  opacity: 0.95;
 }
 
-.logo-frame {
-  height: 48px;
-  padding: 3px;
-  background: linear-gradient(135deg, var(--mustard), #e63946 80%);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  box-shadow: 0 0 16px rgba(229, 169, 16, 0.35);
-}
-
-.brand-logo-img {
-  height: 42px;
+.brand-emblem-img {
+  height: 38px;
   width: auto;
-  object-fit: cover;
-  border-radius: 5px;
+  object-fit: contain;
   display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  transition: transform 0.3s ease;
+}
+
+.brand-link:hover .brand-emblem-img {
+  transform: scale(1.06);
 }
 
 .brand-text-block {
   display: flex;
   flex-direction: column;
+  gap: 0.22rem;
+  justify-content: center;
 }
 
-.brand-name {
-  font-family: var(--font-heading);
-  font-size: 1.3rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: #fff;
-  line-height: 1.1;
-  text-transform: uppercase;
-}
-
-.brand-name span {
-  color: var(--mustard);
+.brand-wordmark-img {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
 }
 
 .brand-subline {
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: #94a3b8;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   3D FLOATING HAMBURGER BUTTON (Reference Image 1)
+   ========================================================================== */
+.floating-3d-hamburger-btn {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1f212a 0%, #0c0d12 100%);
+  border: 1.5px solid rgba(229, 169, 16, 0.8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  padding: 0;
+  box-shadow: 
+    0 0 20px rgba(229, 169, 16, 0.65),
+    0 4px 12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.floating-3d-hamburger-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 
+    0 0 30px rgba(229, 169, 16, 0.9),
+    0 6px 20px rgba(0, 0, 0, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.5);
+  border-color: #ffcf40;
+}
+
+.floating-3d-hamburger-btn:active {
+  transform: scale(0.95);
+}
+
+/* Outer Pulsing Golden Halo Ring */
+.btn-glow-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid rgba(229, 169, 16, 0.45);
+  pointer-events: none;
+  animation: pulse-ring 2.4s infinite;
+}
+
+/* 3 Horizontal Lines inside 3D Orb */
+.hamburger-box {
+  width: 20px;
+  height: 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger-line {
+  display: block;
+  width: 100%;
+  height: 2.2px;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Morph to X when Menu is Open */
+.floating-3d-hamburger-btn.active .line-1 {
+  transform: translateY(6.4px) rotate(45deg);
+  background: #ffcf40;
+}
+
+.floating-3d-hamburger-btn.active .line-2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.floating-3d-hamburger-btn.active .line-3 {
+  transform: translateY(-6.4px) rotate(-45deg);
+  background: #ffcf40;
+}
+
+/* ==========================================================================
+   3D FLOATING RIGHT-SIDE MENU BAR (Reference Image 2)
+   ========================================================================== */
+.side-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 1040;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.side-menu-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.side-menu-3d-panel {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.5rem;
+  width: 280px;
+  max-width: calc(100vw - 2.5rem);
+  z-index: 1100;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(120%) scale(0.92);
+  transform-origin: top right;
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.side-menu-3d-panel.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+}
+
+/* The 3D Beveled Monolith Card */
+.side-menu-inner {
+  background: linear-gradient(165deg, rgba(22, 24, 30, 0.97) 0%, rgba(10, 11, 15, 0.98) 100%);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  border: 1.5px solid rgba(229, 169, 16, 0.45);
+  border-radius: 24px;
+  padding: 1.5rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  box-shadow: 
+    -18px 24px 60px rgba(0, 0, 0, 0.85),
+    0 0 35px rgba(229, 169, 16, 0.25),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3),
+    inset -2px -2px 10px rgba(229, 169, 16, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Golden Ambient Backlight Accent along right side edge (matching Image 2) */
+.side-menu-inner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, transparent 0%, rgba(229, 169, 16, 0.8) 40%, rgba(229, 169, 16, 0.9) 70%, transparent 100%);
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Panel Header */
+.side-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.side-menu-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.side-brand-wordmark {
+  height: 18px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+}
+
+.side-brand-subline {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #94a3b8;
   text-transform: uppercase;
 }
 
-/* Right Nav Menu: Home, Products, Gallery, Contact Us */
-.nav-menu {
+.side-menu-close-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  list-style: none;
-}
-
-.nav-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.6rem 1.15rem;
-  font-family: var(--font-heading);
-  font-size: 0.92rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--text-muted);
-  border-radius: var(--radius-full);
-  border: 1px solid transparent;
-  transition: var(--transition-smooth);
+  justify-content: center;
   cursor: pointer;
-  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+  transition: all 0.25s ease;
 }
 
-.nav-link:hover {
+.side-menu-close-btn:hover {
+  background: rgba(229, 169, 16, 0.2);
+  border-color: rgba(229, 169, 16, 0.6);
+  color: #ffcf40;
+  transform: rotate(90deg);
+}
+
+/* Side Menu Nav Items (Stacked List) */
+.side-menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Side Menu Nav Item - Clean 3D Pill */
+.side-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 0.85rem 1.15rem;
+  border-radius: 16px;
+  text-decoration: none;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(229, 169, 16, 0.25);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1.5px solid transparent;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
 }
 
-.nav-link.active {
-  color: #000000;
-  background: var(--mustard);
-  border-color: var(--mustard-light);
-  font-weight: 700;
-  box-shadow: 0 0 20px rgba(229, 169, 16, 0.5);
+.side-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  transition: all 0.3s ease;
 }
 
-.nav-link.active i {
-  color: #000;
+.side-link-text {
+  flex: 1;
+}
+
+/* Hover State */
+.side-nav-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(229, 169, 16, 0.35);
+  color: #ffffff;
+  transform: translateX(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.side-nav-link:hover .side-icon-box {
+  color: #ffcf40;
+  transform: scale(1.1);
+}
+
+/* Active State: 3D Golden Glow Container (Exactly matching Image 2!) */
+.side-nav-link.active {
+  background: linear-gradient(135deg, rgba(229, 169, 16, 0.25) 0%, rgba(20, 22, 28, 0.8) 100%) !important;
+  border: 1.8px solid #e5a910 !important;
+  color: #ffcf40 !important;
+  font-weight: 700 !important;
+  box-shadow: 
+    0 0 24px rgba(229, 169, 16, 0.38),
+    inset 0 0 16px rgba(229, 169, 16, 0.22),
+    inset 0 1px 2px rgba(255, 255, 255, 0.35) !important;
+}
+
+.side-nav-link.active .side-icon-box {
+  color: #ffcf40 !important;
+  filter: drop-shadow(0 0 10px rgba(229, 169, 16, 0.85)) !important;
+}
+
+.side-nav-link.active .side-link-text {
+  text-shadow: 0 0 12px rgba(229, 169, 16, 0.5);
 }
 
 .nav-actions {
@@ -874,6 +1135,80 @@ h1, h2, h3, h4, .brand-font {
 }
 
 /* ==========================================================================
+   2B. RED CURTAIN UNVEIL COMING SOON CARDS (Mini Tractor & Electric Tractor)
+   ========================================================================== */
+.curtain-card {
+  position: relative;
+  background: linear-gradient(180deg, #13141a 0%, #0d0e12 100%);
+  border: 1px solid rgba(229, 169, 16, 0.2);
+}
+
+.curtain-card:hover {
+  border-color: rgba(229, 169, 16, 0.6);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(220, 38, 38, 0.15);
+}
+
+.product-card-thumb {
+  height: 290px;
+}
+
+.curtain-sparkle-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 25%, rgba(229, 169, 16, 0.12) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.curtain-stage-tag {
+  position: absolute;
+  top: 1.1rem;
+  left: 1.1rem;
+  background: rgba(185, 28, 28, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(239, 68, 68, 0.6);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-sm);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.4);
+}
+
+.curtain-gold-badge {
+  background: linear-gradient(135deg, rgba(26, 16, 12, 0.95), rgba(15, 10, 10, 0.95)) !important;
+  border: 1px solid #e5a910 !important;
+  color: #fbbf24 !important;
+  box-shadow: 0 0 16px rgba(229, 169, 16, 0.35), inset 0 0 8px rgba(220, 38, 38, 0.25) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  z-index: 4;
+}
+
+.curtain-gold-badge::before {
+  background: #fbbf24 !important;
+  box-shadow: 0 0 8px #fbbf24;
+}
+
+.curtain-card:hover .product-card-thumb img {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+
+.curtain-status-notice {
+  background: linear-gradient(90deg, rgba(185, 28, 28, 0.15) 0%, rgba(229, 169, 16, 0.12) 100%) !important;
+  border: 1px solid rgba(229, 169, 16, 0.35) !important;
+  color: #fbbf24 !important;
+  font-weight: 700 !important;
+}
+
+/* ==========================================================================
    3. VISUAL GALLERY (Dribbble Asymmetric Layout: 1 Large Landscape, 2 Medium, 3 Bottom)
    ========================================================================== */
 .gallery-container {
@@ -923,111 +1258,108 @@ h1, h2, h3, h4, .brand-font {
   margin: 0;
 }
 
-/* Asymmetric Visual Grid: Top Row (2 Items: 62% / 38%) & Bottom Row (3 Equal Items) */
+/* ==========================================================================
+   3. VISUAL GALLERY (Even-Sized Uniform Cards Matching Reference Design)
+   ========================================================================== */
 .visual-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.6rem;
+  align-items: stretch;
+}
+
+/* Even-Sized Gallery Card Container (All Cards Have Identical Size & Ratio) */
+.gallery-card {
+  grid-column: span 2;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(165deg, rgba(22, 24, 30, 0.95) 0%, rgba(12, 13, 17, 0.98) 100%);
+  border: 1px solid rgba(229, 169, 16, 0.22);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
-}
-
-.gallery-row-top {
-  display: grid;
-  grid-template-columns: 1.62fr 1fr;
-  gap: 1.4rem;
-}
-
-.gallery-row-bottom {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.4rem;
-}
-
-/* Gallery Cards */
-.gallery-card {
-  position: relative;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #0d0f12;
-  border: 1px solid rgba(229, 169, 16, 0.22);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-  cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.4s ease, 
               box-shadow 0.4s ease;
 }
 
 .gallery-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border-color: var(--mustard);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.85), 0 0 30px rgba(229, 169, 16, 0.28);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.88), 0 0 32px rgba(229, 169, 16, 0.3);
 }
 
+/* Row 2: Center Items 4 and 5 evenly on desktop */
+@media (min-width: 1025px) {
+  .gallery-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+  .gallery-card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
+/* Uniform Even-Sized Media Container Across ALL Cards (Exact Same 16:10 Ratio) */
 .gallery-card-media {
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
+  background: #08090d;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #050607;
+  border-radius: 19px 19px 0 0;
 }
 
-/* Row 1 Heights (Medium & Large) */
-.item-large-landscape .gallery-card-media {
-  height: 380px;
+/* Ambient Backlight to prevent letterbox bars while keeping 100% photo uncropped */
+.gallery-card-bg-blur {
+  position: absolute;
+  inset: -15px;
+  background-size: cover;
+  background-position: center;
+  filter: blur(22px) brightness(0.28) saturate(140%);
+  opacity: 0.9;
+  pointer-events: none;
+  transform: scale(1.1);
 }
 
-.item-medium-featured .gallery-card-media {
-  height: 380px;
-}
-
-/* Row 2 Heights (Neat Compact Tri-Grid) */
-.item-bottom-tri .gallery-card-media {
-  height: 250px;
-}
-
+/* Guaranteed Zero-Cropping Image Display Inside Even-Sized Frame */
 .gallery-card-media img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gallery-card:hover .gallery-card-media img {
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-/* Card Overlays with Title & Description */
-.gallery-card-overlay {
+/* Floating Clean Badges on Photo (Unobtrusive) */
+.gallery-card-badge-row {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(6, 7, 9, 0.94) 0%, rgba(6, 7, 9, 0.45) 50%, rgba(0, 0, 0, 0.1) 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.4rem;
-  transition: background 0.35s ease;
-}
-
-.gallery-card:hover .gallery-card-overlay {
-  background: linear-gradient(to top, rgba(6, 7, 9, 0.98) 0%, rgba(6, 7, 9, 0.65) 60%, rgba(0, 0, 0, 0.25) 100%);
-}
-
-.overlay-badge-row {
+  top: 0.9rem;
+  left: 0.9rem;
+  right: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  pointer-events: none;
+  z-index: 5;
 }
 
-.overlay-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: rgba(8, 9, 10, 0.88);
+.gallery-card-badge {
+  background: rgba(8, 9, 12, 0.85);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(229, 169, 16, 0.45);
   color: var(--mustard);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -1036,66 +1368,98 @@ h1, h2, h3, h4, .brand-font {
   letter-spacing: 0.08em;
   padding: 0.3rem 0.75rem;
   border-radius: var(--radius-full);
-  border: 1px solid var(--border-mustard);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
-.overlay-expand-btn {
+.gallery-card-expand {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: rgba(229, 169, 16, 0.15);
-  border: 1px solid var(--border-mustard);
+  background: rgba(8, 9, 12, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(229, 169, 16, 0.45);
   color: var(--mustard);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.78rem;
-  opacity: 0.85;
-  transform: scale(0.9);
-  transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
-.gallery-card:hover .overlay-expand-btn {
-  transform: scale(1.08);
-  opacity: 1;
+.gallery-card:hover .gallery-card-expand {
   background: var(--mustard);
   color: #000;
+  border-color: var(--mustard);
+  transform: scale(1.1);
 }
 
-.overlay-text-block {
+/* Dedicated Information Area Below Photo (Leaves 100% of the Image Uncovered) */
+.gallery-card-info {
+  padding: 1.35rem 1.45rem 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.55rem;
+  background: linear-gradient(180deg, rgba(16, 18, 23, 0.98) 0%, rgba(10, 11, 15, 0.99) 100%);
+  border-top: 1px solid rgba(229, 169, 16, 0.16);
+  flex: 1;
 }
 
-.overlay-title {
+.gallery-card-title {
   font-family: var(--font-heading);
   font-size: 1.15rem;
   font-weight: 700;
   color: #ffffff;
-  line-height: 1.25;
+  line-height: 1.3;
   margin: 0;
   transition: color 0.3s ease;
 }
 
-.item-large-landscape .overlay-title {
-  font-size: 1.35rem;
+.gallery-card:hover .gallery-card-title {
+  color: #ffcf40;
 }
 
-.gallery-card:hover .overlay-title {
-  color: var(--mustard-light);
-}
-
-.overlay-snippet {
+.gallery-card-desc {
   font-family: var(--font-body);
-  font-size: 0.86rem;
-  color: #cbd5e1;
-  line-height: 1.45;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.gallery-card-footer {
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gallery-card-action {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--mustard);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.25s ease;
+}
+
+.gallery-card:hover .gallery-card-action {
+  color: #ffcf40;
+  transform: translateX(3px);
 }
 
 /* ==========================================================================
@@ -1179,13 +1543,13 @@ h1, h2, h3, h4, .brand-font {
   padding: 0.8rem 1.2rem;
   background: #000;
   min-height: 300px;
-  max-height: 52vh;
+  max-height: 60vh;
 }
 
 .lightbox-image-wrap {
   width: 100%;
   height: 100%;
-  max-height: 48vh;
+  max-height: 58vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1194,7 +1558,7 @@ h1, h2, h3, h4, .brand-font {
 
 .lightbox-img {
   max-width: 100%;
-  max-height: 48vh;
+  max-height: 58vh;
   object-fit: contain;
   border-radius: var(--radius-sm);
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -1652,20 +2016,18 @@ textarea.form-control {
   .pillars-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .gallery-row-top {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  .item-large-landscape .gallery-card-media,
-  .item-medium-featured .gallery-card-media {
-    height: 320px;
-  }
-  .gallery-row-bottom {
+  .visual-gallery-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
+    gap: 1.4rem;
   }
-  .item-bottom-tri .gallery-card-media {
-    height: 240px;
+  .gallery-card {
+    grid-column: span 1 !important;
+  }
+  .gallery-card:nth-child(5) {
+    grid-column: 1 / span 2 !important;
+    max-width: 520px;
+    margin: 0 auto;
+    width: 100%;
   }
   .gallery-header-minimal {
     flex-direction: column;
@@ -1679,29 +2041,24 @@ textarea.form-control {
 }
 
 @media (max-width: 768px) {
-  .mobile-toggle {
-    display: flex;
+  .site-header {
+    top: 0.6rem;
   }
-  .nav-menu {
-    position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    width: 100%;
-    background: rgba(8, 9, 10, 0.98);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-mustard);
-    flex-direction: column;
-    padding: 1.5rem;
-    gap: 0.75rem;
-    display: none;
+  .nav-container {
+    width: calc(100% - 1.2rem);
+    padding: 0.45rem 0.85rem;
   }
-  .nav-menu.open {
-    display: flex;
+  .floating-3d-hamburger-btn {
+    width: 44px;
+    height: 44px;
   }
-  .nav-link {
-    width: 100%;
-    justify-content: center;
-    padding: 0.85rem;
+  .side-menu-3d-panel {
+    top: 0.8rem;
+    right: 0.8rem;
+    width: calc(100vw - 1.6rem);
+  }
+  .side-menu-inner {
+    padding: 1.3rem 1.1rem;
   }
   .cinematic-pill {
     display: none;
@@ -1712,13 +2069,14 @@ textarea.form-control {
   .secondary-products-grid {
     grid-template-columns: 1fr;
   }
-  .gallery-row-bottom {
+  .visual-gallery-grid {
     grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
-  .item-large-landscape .gallery-card-media,
-  .item-medium-featured .gallery-card-media,
-  .item-bottom-tri .gallery-card-media {
-    height: 240px;
+  .gallery-card,
+  .gallery-card:nth-child(5) {
+    grid-column: span 1 !important;
+    max-width: 100%;
   }
   .lightbox-stage {
     padding: 0.5rem;

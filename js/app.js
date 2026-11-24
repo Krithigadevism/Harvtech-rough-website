@@ -19,8 +19,48 @@ document.addEventListener('DOMContentLoaded', () => {
 function initNavigation() {
   const navLinks = document.querySelectorAll('.nav-link, .spa-trigger');
   const pageViews = document.querySelectorAll('.page-view');
-  const mobileToggle = document.getElementById('mobileToggle');
-  const navMenu = document.getElementById('navMenu');
+  const floatingMenuBtn = document.getElementById('floatingMenuBtn');
+  const sideMenuPanel = document.getElementById('sideMenuPanel');
+  const sideMenuBackdrop = document.getElementById('sideMenuBackdrop');
+  const sideMenuCloseBtn = document.getElementById('sideMenuCloseBtn');
+
+  function openSideMenu() {
+    if (sideMenuPanel) sideMenuPanel.classList.add('open');
+    if (sideMenuBackdrop) sideMenuBackdrop.classList.add('open');
+    if (floatingMenuBtn) floatingMenuBtn.classList.add('active');
+    playUiSound('toggle');
+  }
+
+  function closeSideMenu() {
+    if (sideMenuPanel) sideMenuPanel.classList.remove('open');
+    if (sideMenuBackdrop) sideMenuBackdrop.classList.remove('open');
+    if (floatingMenuBtn) floatingMenuBtn.classList.remove('active');
+  }
+
+  if (floatingMenuBtn) {
+    floatingMenuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (sideMenuPanel && sideMenuPanel.classList.contains('open')) {
+        closeSideMenu();
+      } else {
+        openSideMenu();
+      }
+    });
+  }
+
+  if (sideMenuCloseBtn) {
+    sideMenuCloseBtn.addEventListener('click', closeSideMenu);
+  }
+
+  if (sideMenuBackdrop) {
+    sideMenuBackdrop.addEventListener('click', closeSideMenu);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sideMenuPanel && sideMenuPanel.classList.contains('open')) {
+      closeSideMenu();
+    }
+  });
 
   function switchPage(targetPageId, scrollToTop = true) {
     pageViews.forEach(page => {
@@ -43,9 +83,7 @@ function initNavigation() {
       }
     }
 
-    if (navMenu && navMenu.classList.contains('open')) {
-      navMenu.classList.remove('open');
-    }
+    closeSideMenu();
 
     if (history.pushState) {
       history.pushState(null, null, `#${targetPageId}`);
@@ -65,13 +103,6 @@ function initNavigation() {
       }
     });
   });
-
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('open');
-      playUiSound('click');
-    });
-  }
 
   // Handle Book Demonstration buttons throughout site
   const demoButtons = document.querySelectorAll('.trigger-book-demo');
@@ -121,10 +152,10 @@ function triggerBookDemonstration(productName) {
     if (productDropdown) {
       if (productName.includes('Weeder')) {
         productDropdown.value = 'Power Weeder';
-      } else if (productName.includes('Tiller')) {
-        productDropdown.value = 'Tiller';
-      } else if (productName.includes('Tractor')) {
+      } else if (productName.includes('Mini Tractor')) {
         productDropdown.value = 'Mini Tractor';
+      } else if (productName.includes('Tractor')) {
+        productDropdown.value = 'Electric Tractor';
       }
     }
 
