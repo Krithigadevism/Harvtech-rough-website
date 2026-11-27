@@ -6,8 +6,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
-  initHomepageScrollVideo();
+  initHomepageScrollAnimation();
   initMultiAngleProductViewer();
+  initTcoCalculator();
   initGallery();
   initContactForm();
   initHeaderScroll();
@@ -79,7 +80,7 @@ function initNavigation() {
     if (targetElement) {
       targetElement.classList.add('active-page');
       if (scrollToTop) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo(0, 0);
       }
     }
 
@@ -97,7 +98,7 @@ function initNavigation() {
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
-      const pageId = link.getAttribute('data-page');
+      const pageId = link.getAttribute('data-page') || link.closest('[data-page]')?.getAttribute('data-page');
       if (pageId) {
         switchPage(pageId);
       }
@@ -109,7 +110,7 @@ function initNavigation() {
   demoButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const productName = btn.getAttribute('data-product') || 'Power Weeder';
+      const productName = btn.getAttribute('data-product') || 'Smart Electric Weeder';
       triggerBookDemonstration(productName);
     });
   });
@@ -151,9 +152,9 @@ function triggerBookDemonstration(productName) {
     }
     if (productDropdown) {
       if (productName.includes('Weeder')) {
-        productDropdown.value = 'Power Weeder';
-      } else if (productName.includes('Mini Tractor')) {
-        productDropdown.value = 'Mini Tractor';
+        productDropdown.value = 'Smart Electric Weeder';
+      } else if (productName.includes('Mini-Tractor') || productName.includes('Mini Tractor')) {
+        productDropdown.value = '25 HP Mini-Tractor';
       } else if (productName.includes('Tractor')) {
         productDropdown.value = 'Electric Tractor';
       }
@@ -185,110 +186,189 @@ function initHeaderScroll() {
 }
 
 /* ==========================================================================
-   3. HOMEPAGE: CINEMATIC ULTRA-SMOOTH SINGLE-SCREEN SCROLL VIDEO
-   - AI-Generated Video (homepage-story.mp4) bound to mouse scroll.
-   - 60 FPS Linear Interpolation (Lerp) for buttery smooth playback.
-   - Operates on a single screen with zero blank space.
-   - Seamlessly rolls down into the Application of Harvtech section when finished.
-   - Smoothly rewinds when scrolling back to the top.
+   3. HOMEPAGE: CINEMATIC ZERO-STUTTER WEBP SCROLL SCRUB ANIMATION
+   - 236 Highly Compressed WebP frames (40.2% smaller file size).
+   - Silky smooth scrub animation tied to mouse wheel and touch swipe.
+   - Strictly locked on the video screen until 100% completed.
+   - Smooth frame-by-frame 60FPS / 120FPS GPU Canvas rendering with lerp damping.
+   - Seamlessly releases and scrolls to "About Harvtech" once finished.
+   - Smoothly rewinds in reverse when scrolling back to the top.
    ========================================================================== */
-function initHomepageScrollVideo() {
+function initHomepageScrollAnimation() {
   const screen = document.getElementById('homeVideoScreen');
-  const video = document.getElementById('homeScrollVideo');
+  const canvas = document.getElementById('homeScrollCanvas');
+  const scrollPrompt = document.getElementById('heroScrollPrompt');
   const homeSection = document.getElementById('home');
 
-  if (!video || !screen) return;
+  if (!canvas || !screen) return;
 
-  let videoDuration = 18.84;
-  let targetTime = 0;
-  let currentSmoothTime = 0;
-  let isSeeking = false;
+  const ctx = canvas.getContext('2d', { alpha: false });
+  if (!ctx) return;
 
-  video.muted = true;
-  video.playsInline = true;
+  const TOTAL_FRAMES = 236;
+  const frames = new Array(TOTAL_FRAMES);
+  const loadedMap = new Array(TOTAL_FRAMES).fill(false);
 
-  video.addEventListener('loadedmetadata', () => {
-    if (video.duration && !isNaN(video.duration) && video.duration > 0) {
-      videoDuration = video.duration;
-    }
-  });
-
-  video.addEventListener('canplay', () => {
-    if (video.duration && !isNaN(video.duration) && video.duration > 0) {
-      videoDuration = video.duration;
-    }
-  });
-
-  // Prime the decoder
-  video.load();
-  try {
-    video.currentTime = 0.001;
-  } catch (e) {}
+  let targetFrame = 0;
+  let currentFrame = 0;
+  let lastDrawnFrame = -1;
+  let firstFrameRendered = false;
 
   function isHomeActive() {
     return homeSection && homeSection.classList.contains('active-page');
   }
 
-  // Handle seek completion to keep pipeline flowing
-  video.addEventListener('seeked', () => {
-    isSeeking = false;
-  });
-  video.addEventListener('error', () => {
-    isSeeking = false;
-  });
+  // Preloader for individual WebP frame
+  function preloadFrame(index) {
+    if (frames[index]) return frames[index];
+    const img = new Image();
+    const frameNum = String(index + 1).padStart(4, '0');
+    img.src = `css/assets/frames/frame_${frameNum}.webp`;
+    img.onload = () => {
+      loadedMap[index] = true;
+      if (index === 0 && !firstFrameRendered) {
+        firstFrameRendered = true;
+        drawFrame(0);
+      }
+    };
+    frames[index] = img;
+    return img;
+  }
 
-  // 60FPS Smooth Interpolation Loop (Decouples scroll from video decoder)
-  function smoothPlaybackLoop() {
-    if (isHomeActive()) {
-      const diff = targetTime - currentSmoothTime;
-      // Exponential smoothing (lerp factor 0.16 gives silky momentum)
-      if (Math.abs(diff) > 0.002) {
-        currentSmoothTime += diff * 0.16;
-        currentSmoothTime = Math.max(0, Math.min(videoDuration - 0.04, currentSmoothTime));
+  // Preload frame 0 immediately for instant first-paint
+  preloadFrame(0);
 
-        if (!video.seeking && !isSeeking && video.readyState >= 1) {
-          isSeeking = true;
-          try {
-            video.currentTime = currentSmoothTime;
-          } catch (err) {
-            isSeeking = false;
-          }
+  // Staged progressive preloader: Priority load initial frames, then pipeline the rest
+  function loadAllFrames() {
+    // Stage 1: Load first 32 frames immediately for instant responsiveness
+    for (let i = 0; i < Math.min(32, TOTAL_FRAMES); i++) {
+      preloadFrame(i);
+    }
+    // Stage 2: Stream remaining frames in background batches
+    let nextIndex = 32;
+    function loadNextBatch() {
+      const batchEnd = Math.min(nextIndex + 16, TOTAL_FRAMES);
+      for (let i = nextIndex; i < batchEnd; i++) {
+        preloadFrame(i);
+      }
+      nextIndex = batchEnd;
+      if (nextIndex < TOTAL_FRAMES) {
+        if ('requestIdleCallback' in window) {
+          window.requestIdleCallback(loadNextBatch, { timeout: 120 });
+        } else {
+          setTimeout(loadNextBatch, 40);
         }
       }
     }
-    requestAnimationFrame(smoothPlaybackLoop);
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(loadNextBatch, { timeout: 100 });
+    } else {
+      setTimeout(loadNextBatch, 50);
+    }
   }
-  requestAnimationFrame(smoothPlaybackLoop);
+  loadAllFrames();
 
-  // Mouse Wheel Listener with normalized speed
+  // High-DPI Canvas Resize with crisp cover scaling
+  function resizeCanvas() {
+    if (!canvas || !screen) return;
+    const rect = screen.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+    lastDrawnFrame = -1;
+    drawFrame(Math.round(currentFrame));
+  }
+
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+  resizeCanvas();
+
+  // Instantaneous GPU frame draw with cover fitting (zero latency, zero black bars)
+  function drawFrame(index) {
+    if (!ctx || !canvas.width || !canvas.height) return;
+    index = Math.max(0, Math.min(TOTAL_FRAMES - 1, index));
+
+    let img = frames[index];
+    if (!loadedMap[index] || !img || !img.complete || !img.naturalWidth) {
+      // Instant fallback to nearest loaded frame to guarantee zero flicker
+      for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
+        if (index - offset >= 0 && loadedMap[index - offset]) {
+          img = frames[index - offset];
+          break;
+        }
+        if (index + offset < TOTAL_FRAMES && loadedMap[index + offset]) {
+          img = frames[index + offset];
+          break;
+        }
+      }
+    }
+
+    if (!img || !img.complete || !img.naturalWidth) return;
+
+    const cw = canvas.width;
+    const ch = canvas.height;
+    const cRatio = cw / ch;
+    const iRatio = img.naturalWidth / img.naturalHeight;
+    let dw, dh, dx, dy;
+
+    if (cRatio > iRatio) {
+      dw = cw;
+      dh = cw / iRatio;
+      dx = 0;
+      dy = (ch - dh) / 2;
+    } else {
+      dh = ch;
+      dw = ch * iRatio;
+      dx = (cw - dw) / 2;
+      dy = 0;
+    }
+
+    ctx.fillStyle = '#0a0b0e';
+    ctx.fillRect(0, 0, cw, ch);
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    ctx.drawImage(img, dx, dy, dw, dh);
+    lastDrawnFrame = index;
+  }
+
+  // Mouse Wheel Scrubbing with Strict Screen Locking & Silky Micro-Stepping
   window.addEventListener('wheel', (e) => {
     if (!isHomeActive()) return;
 
     const scrollY = window.scrollY || window.pageYOffset || 0;
-    const normalizedDelta = e.deltaMode === 1 ? e.deltaY * 28 : e.deltaY;
+    const rawDelta = e.deltaMode === 1 ? e.deltaY * 28 : e.deltaY;
 
-    // SCROLL DOWN:
-    if (normalizedDelta > 0) {
-      // If at the top and video is still progressing, advance smoothly & prevent premature page jumping
-      if (scrollY <= 8 && targetTime < videoDuration - 0.22) {
+    // SCROLL DOWN (forward scrub):
+    if (rawDelta > 0) {
+      // If at top of the page and video is NOT finished, lock screen and scrub forward
+      if (scrollY <= 10 && targetFrame < TOTAL_FRAMES - 1) {
         e.preventDefault();
-        const deltaSec = Math.max(0.08, Math.min(0.75, (normalizedDelta / 220) * 0.42));
-        targetTime = Math.min(videoDuration - 0.05, targetTime + deltaSec);
+        // Calibrate step for buttery smooth scrub (supports both delicate trackpads & mouse wheels)
+        const step = Math.max(0.6, Math.min(7, Math.abs(rawDelta) / 20));
+        targetFrame = Math.min(TOTAL_FRAMES - 1, targetFrame + step);
+
+        if (scrollPrompt && targetFrame > 6) {
+          scrollPrompt.classList.add('fade-out');
+        }
       }
-      // Once video reaches the end, normal page scroll naturally descends to Application section
-    } 
-    // SCROLL UP:
-    else if (normalizedDelta < 0) {
-      // When user is scrolled back to the top of the screen, rewind video
-      if (scrollY <= 8 && targetTime > 0.04) {
+      // Once targetFrame reaches TOTAL_FRAMES - 1, the video is 100% finished!
+      // Subsequent scroll down rolls down smoothly into the rest of the page!
+    }
+    // SCROLL UP (reverse scrub):
+    else if (rawDelta < 0) {
+      // If user has scrolled back up to top and video is not at start, rewind it smoothly
+      if (scrollY <= 10 && targetFrame > 0) {
         e.preventDefault();
-        const deltaSec = Math.max(0.08, Math.min(0.75, (Math.abs(normalizedDelta) / 220) * 0.42));
-        targetTime = Math.max(0, targetTime - deltaSec);
+        const step = Math.max(0.6, Math.min(7, Math.abs(rawDelta) / 20));
+        targetFrame = Math.max(0, targetFrame - step);
+
+        if (scrollPrompt && targetFrame <= 6) {
+          scrollPrompt.classList.remove('fade-out');
+        }
       }
     }
   }, { passive: false });
 
-  // Touch Swipe Support for Mobile
+  // Mobile Touch Swipe Handling with Strict Screen Locking
   let touchStartY = 0;
   window.addEventListener('touchstart', (e) => {
     if (e.touches && e.touches.length > 0) {
@@ -301,24 +381,54 @@ function initHomepageScrollVideo() {
 
     const scrollY = window.scrollY || window.pageYOffset || 0;
     const currentY = e.touches[0].clientY;
-    const diffY = touchStartY - currentY; // positive = swipe up (scroll down)
+    const diffY = touchStartY - currentY; // positive = swipe up (scroll forward)
 
     if (diffY > 0) {
-      if (scrollY <= 8 && targetTime < videoDuration - 0.22) {
+      if (scrollY <= 10 && targetFrame < TOTAL_FRAMES - 1) {
         e.preventDefault();
-        const deltaSec = Math.max(0.06, Math.min(0.5, (diffY / 120) * 0.32));
-        targetTime = Math.min(videoDuration - 0.05, targetTime + deltaSec);
+        const step = Math.max(0.6, Math.min(6, diffY / 12));
+        targetFrame = Math.min(TOTAL_FRAMES - 1, targetFrame + step);
         touchStartY = currentY;
+
+        if (scrollPrompt && targetFrame > 6) {
+          scrollPrompt.classList.add('fade-out');
+        }
       }
     } else if (diffY < 0) {
-      if (scrollY <= 8 && targetTime > 0.04) {
+      if (scrollY <= 10 && targetFrame > 0) {
         e.preventDefault();
-        const deltaSec = Math.max(0.06, Math.min(0.5, (Math.abs(diffY) / 120) * 0.32));
-        targetTime = Math.max(0, targetTime - deltaSec);
+        const step = Math.max(0.6, Math.min(6, Math.abs(diffY) / 12));
+        targetFrame = Math.max(0, targetFrame - step);
         touchStartY = currentY;
+
+        if (scrollPrompt && targetFrame <= 6) {
+          scrollPrompt.classList.remove('fade-out');
+        }
       }
     }
   }, { passive: false });
+
+  // 60FPS / 120FPS GPU Continuous Interpolation Loop (Exponential Lerp Damping)
+  function animationLoop() {
+    if (isHomeActive()) {
+      const diff = targetFrame - currentFrame;
+      if (Math.abs(diff) > 0.01) {
+        // Silky exponential damping (lerp factor 0.18 gives responsive, frictionless scrub)
+        currentFrame += diff * 0.18;
+        const frameIndex = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.round(currentFrame)));
+        if (frameIndex !== lastDrawnFrame) {
+          drawFrame(frameIndex);
+        }
+      }
+    }
+    requestAnimationFrame(animationLoop);
+  }
+  requestAnimationFrame(animationLoop);
+}
+
+// Backwards-compatibility alias
+function initHomepageScrollVideo() {
+  initHomepageScrollAnimation();
 }
 
 /* ==========================================================================
@@ -734,6 +844,14 @@ function initContactForm() {
       });
     });
   }
+
+  // Floating WhatsApp Bot Click Sound
+  const waBtn = document.getElementById('whatsappChatBtn');
+  if (waBtn) {
+    waBtn.addEventListener('click', () => {
+      playUiSound('click');
+    });
+  }
 }
 
 /**
@@ -891,4 +1009,110 @@ function playUiSound(type) {
       osc.stop(now + 0.36);
     }
   } catch (err) {}
+}
+
+/* ==========================================================================
+   INTERACTIVE TOTAL COST OF OWNERSHIP & SAVINGS CALCULATOR
+   - Real-time updates based on annual operating hours slider (100 - 1500 hrs)
+   - Baseline diesel toggle (5.5 HP @ ₹78/hr vs 9 HP @ ₹98/hr)
+   - HarvTech Electric running cost @ ₹15/hr
+   - 50% Government Subsidy on ₹1.13 lakh machine price (Subsidized cost = ₹56,500)
+   - Visual vertical bar chart animation matching Reference Image 1
+   - Formats currency in Indian numbering (e.g. ₹37,800)
+   ========================================================================== */
+function initTcoCalculator() {
+  const slider = document.getElementById('calcHoursSlider');
+  const hoursNum = document.getElementById('calcHoursNumber');
+  const chartHoursBadge = document.getElementById('chartHoursBadge');
+  const baselineBtns = document.querySelectorAll('.baseline-pill-btn');
+  
+  const valDieselCost = document.getElementById('valDieselCost');
+  const valElectricCost = document.getElementById('valElectricCost');
+  const barDieselFill = document.getElementById('barDieselFill');
+  const barElectricFill = document.getElementById('barElectricFill');
+
+  const statHourlySavings = document.getElementById('statHourlySavings');
+  const statAnnualSavings = document.getElementById('statAnnualSavings');
+  const statPaybackPeriod = document.getElementById('statPaybackPeriod');
+  const statBaselineName = document.getElementById('statBaselineName');
+  const bannerSavingsAmount = document.getElementById('bannerSavingsAmount');
+
+  if (!slider) return;
+
+  let currentDieselRate = 78; // Conventional 5.5 HP diesel baseline by default (₹78/hr)
+  let currentBaselineName = '5.5 HP Diesel';
+  const ELECTRIC_RATE = 15; // HarvTech Electric: ₹15/hr
+  const MACHINE_SUBSIDIZED_PRICE = 56500; // 50% of ₹1,13,000
+
+  function formatInr(val) {
+    return '₹' + Math.round(val).toLocaleString('en-IN');
+  }
+
+  function updateCalculator() {
+    const hours = parseInt(slider.value, 10) || 600;
+
+    // Update displayed hours
+    if (hoursNum) hoursNum.textContent = hours.toLocaleString('en-IN');
+    if (chartHoursBadge) chartHoursBadge.textContent = hours.toLocaleString('en-IN');
+
+    // Calculations
+    const dieselTotal = hours * currentDieselRate;
+    const electricTotal = hours * ELECTRIC_RATE;
+    const annualSavings = dieselTotal - electricTotal;
+    const hourlySavings = currentDieselRate - ELECTRIC_RATE;
+    const savingsPercent = Math.round((annualSavings / dieselTotal) * 100);
+
+    // Payback in months: Subsidized price / Annual savings * 12
+    const paybackMonths = Math.max(1, (MACHINE_SUBSIDIZED_PRICE / annualSavings) * 12);
+    const paybackDisplay = paybackMonths < 12 
+      ? `~${paybackMonths.toFixed(1)} Months` 
+      : `~${(paybackMonths / 12).toFixed(1)} Years (${Math.round(paybackMonths)} Mo)`;
+
+    // Update values above bars
+    if (valDieselCost) valDieselCost.textContent = formatInr(dieselTotal);
+    if (valElectricCost) valElectricCost.textContent = formatInr(electricTotal);
+
+    // Dynamic bar heights (proportional, with min height so labels fit nicely)
+    const maxCost = Math.max(dieselTotal, electricTotal, 1);
+    const dieselBarPct = Math.max(15, Math.min(100, (dieselTotal / maxCost) * 100));
+    const electricBarPct = Math.max(12, Math.min(100, (electricTotal / maxCost) * 100));
+
+    if (barDieselFill) barDieselFill.style.height = `${dieselBarPct}%`;
+    if (barElectricFill) barElectricFill.style.height = `${electricBarPct}%`;
+
+    // Update Stat Cards (Image 2 metrics)
+    if (statHourlySavings) statHourlySavings.textContent = `${formatInr(hourlySavings)} / hr`;
+    if (statAnnualSavings) statAnnualSavings.textContent = `${formatInr(annualSavings)} / yr`;
+    if (statPaybackPeriod) statPaybackPeriod.textContent = paybackDisplay;
+    if (statBaselineName) statBaselineName.textContent = currentBaselineName;
+
+    // Update bottom banner callout
+    if (bannerSavingsAmount) {
+      bannerSavingsAmount.textContent = `Save ${formatInr(annualSavings)} / year (~${savingsPercent}% savings)`;
+    }
+
+    // Dynamic slider fill background
+    const min = parseFloat(slider.min) || 100;
+    const max = parseFloat(slider.max) || 1500;
+    const percent = ((hours - min) / (max - min)) * 100;
+    slider.style.background = `linear-gradient(90deg, #e5a910 ${percent}%, #2a2d36 ${percent}%)`;
+  }
+
+  slider.addEventListener('input', updateCalculator);
+
+  // Handle baseline toggle buttons
+  baselineBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      baselineBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      currentDieselRate = parseFloat(btn.dataset.rate) || 78;
+      currentBaselineName = btn.dataset.baseline === 'diesel9' ? '9 HP Diesel' : '5.5 HP Diesel';
+      playUiSound('toggle');
+      updateCalculator();
+    });
+  });
+
+  // Initial calculation
+  updateCalculator();
 }
